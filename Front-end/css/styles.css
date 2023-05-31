@@ -8,14 +8,16 @@ body{
 
 .nav-item > .nav-link, .nav-item > .nav-link:hover {
     color: white;
+    font-weight: bold;
 }
 
-.navbar-brand {
-    padding-right: 1%;
-}
 
 .navbar-nav h1 {
     display: none;
+}
+
+.table td {
+    color: white;
 }
 
 
