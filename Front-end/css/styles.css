@@ -14,3 +14,22 @@ body{
     padding-right: 1%;
 }
 
+.navbar-nav h1 {
+    display: none;
+}
+
+
+@media (max-width: 991px) {
+    .nav-item {
+        margin-top: 3%;
+        margin-left: 3%;
+        font-weight: bold;
+    }
+    .navbar-nav h1 {
+        display:inline;
+        margin-top: 3%;
+        margin-left: 3%;
+    }
+}
+
+
