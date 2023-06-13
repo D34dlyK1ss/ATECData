@@ -20,6 +20,9 @@ body{
     color: white;
 }
 
+.container {
+    color: white;
+}
 
 @media (max-width: 991px) {
     .nav-item {
