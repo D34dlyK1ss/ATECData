@@ -30,7 +30,7 @@ app.post('/deleteItem', (req, res) => {
     // res.send('api request' + id);
 });
 
-app.get('/people', (req, res) => {
+app.get('/items', (req, res) => {
   res.send(dbRepo.list());
 });
 
