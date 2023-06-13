@@ -2,7 +2,7 @@ const fs = require('fs');
 
 exports.databaseRepo = function () {
     let dbName = 'database.json';
-    let readDb = function(){
+    let readDb = function() {
         let rawData = fs.readFileSync(dbName);
 
         return JSON.parse(rawData);
