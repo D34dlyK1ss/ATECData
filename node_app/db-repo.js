@@ -1,58 +1,59 @@
 const fs = require('fs');
 
-exports.databaseRepo = function () {
-    let dbName = 'database.json';
-    let readDb = function() {
-        let rawData = fs.readFileSync(dbName);
+exports.databaseRepo = function() {
+	let dbName = 'database.json';
+	let readDb = function() {
+		let rawData = fs.readFileSync(dbName);
 
-        return JSON.parse(rawData);
-    };
+		return JSON.parse(rawData);
+	};
 
-    return {
-        update: function(item) {
-            let dataJson = readDb();
-            let itemToUpdate = dataJson.items.find(x => x.Id === item.Id);
+	return {
+		update: function(component) {     
+			let dataJson = readDb();
+			let componentToUpdate = dataJson.components.find(x => x.Id === component.Id);
 
-            itemToUpdate.id = item.id;
-            itemToUpdate.price = item.price;
-            itemToUpdate.category = item.category;
-            itemToUpdate.manufacturer = item.manufacturer;
-            itemToUpdate.model = item.model;
-            fs.writeFileSync(dbName, JSON.stringify(dataJson, null, 2));
+			componentToUpdate.serial = component.serial;
+			componentToUpdate.price = component.price;
+			componentToUpdate.category = component.category;
+			componentToUpdate.manufacturer = component.manufacturer;
+			componentToUpdate.model = component.model;
+			componentToUpdate.color = component.color;
+			componentToUpdate.photo = component.photo;
+			
+			fs.writeFileSync(dbName, JSON.stringify(dataJson, null, '\t'));
 
-            return itemToUpdate;
-        },
+			return componentToUpdate;
+		},
 
-        insert: function(item) {
-            let dataJson = readDb();
-            let nextId = 1;
+		insert: function(component) {     
+			let dataJson = readDb();
+			let nextId = 1;
 
-            for (const item of dataJson.items) {
-                if(nextId <= item.Id) nextId = item.Id;
-            }
+			for (const component of dataJson.components) {
+				if(nextId <= component.Id) nextId = component.Id;
+			}
 
-            nextId++;
-            item.Id = nextId;
-            dataJson.items.push(item);            
-            fs.writeFileSync(dbName, JSON.stringify(dataJson, null, 2));
-            return item;
-        },
+			nextId++;
+			component.Id = nextId;
+			dataJson.components.push(component);
 
-        list: function() {
-            return readDb().items;
-        },
+			fs.writeFileSync(dbName, JSON.stringify(dataJson, null, '\t'));
+			return component;
+		},
 
-        delete: function(id) {
-            let dataJson = readDb();
+		list: function() {
+			return readDb().components;
+		},
 
-            dataJson.items = dataJson.items.filter(x => x.Id != id);
-            fs.writeFileSync(dbName, JSON.stringify(dataJson, null, 2));
+		delete: function(id) {
+			let dataJson = readDb();
 
-            return true;
-        },
+			dataJson.components = dataJson.components.filter(x => x.Id != id);
 
-        listSampleData: function(onResponse){
-            fs.readFile('product_list.json', 'utf8', onResponse);
-        }
-    }
+			fs.writeFileSync(dbName, JSON.stringify(dataJson, null, '\t'));
+
+			return true;
+		}
+	}
 };

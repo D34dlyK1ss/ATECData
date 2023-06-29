@@ -1,46 +1,37 @@
-const express = require('express');
-let cors = require('cors');
-let app = express();
-let dbRepo = require('./dbrepo').databaseRepo();
-const bodyParser = require('body-parser');
-const port = 3000;
+const express = require('express')
+var cors = require('cors')
+var app = express()
+var dbRepo = require('./dbrepo').databaseRepo();
 
-app.use(cors());
+const bodyParser = require('body-parser');
+const port = 3000
+
+app.use(cors())
 app.use(bodyParser.json());
 
-app.post('/addItem', (req, res) => {
+app.post('/addComponent', (req, res) => {
   let data = req.body;
-  let insertedItem = dbRepo.insert(data);
-
-  res.send(insertedItem);
+  let insertedComponent = dbRepo.insert(data)
+  res.send(insertedComponent);
 });
 
-app.post('/updateItem', (req, res) => {
+app.post('/updateComponent', (req, res) => {
   let data = req.body;
   let updated = dbRepo.update(data);
-
   res.send(updated);
 });
 
-app.post('/deleteItem', (req, res) => {
+app.post('/deleteComponent', (req, res) => {
     let id = req.body.id;
-    let result = dbRepo.delete(id);
 
+    var result = dbRepo.delete(id)
     res.send(result ? 'OK' : 'NOK');
-    // res.send('api request' + id);
 });
 
-app.get('/items', (req, res) => {
-  res.send(dbRepo.list());
+app.get('/people', (req, res) => {
+  res.send(dbRepo.list())
 });
-
-// app.get('/sample', (req, res) => {
-//   dbRepo.listSampleData(function(err, data){
-//     let dictJson = JSON.parse(data);
-//     res.send(dictJson)
-//   })
-// })
 
 app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+  console.log(`Example app listening on port ${port}`)
 });
