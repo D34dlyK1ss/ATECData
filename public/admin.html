@@ -1,77 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="css/admin.css">
-		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-			integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-			integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-			crossorigin="anonymous" referrerpolicy="no-referrer" />
-		<title>ATECDATA - Admin</title>
-	</head>
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="css/admin.css">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+		integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+	<title>ATECDATA - Admin</title>
+</head>
 
 <header>
-    <nav class="navbar navbar-expand-lg navbar-light bg-dark" id="navbar">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">
-                <img src="images/logo.jpg" alt="ATECDATA" height="70" />
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                    <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contacts.html">Contacts Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="buy.html"><i class="fas fa-cart-shopping"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="login.html"><i class="fas fa-user"></i></a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+	<nav class="navbar navbar-expand-lg navbar-light bg-dark" id="navbar">
+		<div class="container-fluid">
+			<a class="navbar-brand" href="index.html">
+				<img src="images/logo.jpg" alt="ATECDATA" height="70" />
+			</a>
+			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+				aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" aria-current="page" href="index.html">Home</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="contacts.html">Contacts Us</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="about.html">About Us</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#"><i class="fas fa-cart-shopping"></i></a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="admin.html"><i class="fas fa-user"></i></a>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</nav>
 </header>
 
 <body>
 	<!--Campos para inserir informação-->
-	<div class="container" style="margin-left: 0%;">
+	<div class="container" style="margin-left: 0%; width: 75%;">
 		<div class="row g-2" style="margin-left: 2%; margin-top: 1%;">
 			<div class="col-sm">
 				<div class="form-outline">
 					<label class="form-label">Serial</label>
-					<input type="text" id="inputSerial" placeholder="Serial" class="form-control" />
+					<input type="text" id="inputSerial" placeholder="Serial"  style="text-transform:uppercase" class="form-control" />
 				</div>
 			</div>
 			<div class="col-sm">
 				<div class="form-outline">
 					<label class="form-label">Price</label>
-					<input type="number" id="inputPrice" placeholder="Price" class="form-control" />
+					<input type="number" id="inputPrice" placeholder="Price" step="0.01" min="0" value="0" class="form-control" />
 				</div>
 			</div>
 			<div class="col-sm">
 				<div class="form-outline">
 					<label class="form-label">Category</label>
-					<input type="text" id="inputCategory" placeholder="Category" class="form-control" />
+						<select name="Category" id="inputCategory" class="form-control">
+							<option value="Cases">Cases</option>
+							<option value="Coolers">Coolers</option>
+							<option value="Graphics Cards">Graphics Cards</option>
+							<option value="Memory">Memory</option>
+							<option value="Power Supplies">Power Supplies</option>
+							<option value="Processors">Processors</option>
+							<option value="Storage">Storage</option>
+						</select>
 				</div>
 			</div>
 			<div class="col-sm">
 				<div class="form-outline">
 					<label class="form-label">Manufacturer</label>
-					<input type="text" id="inputManufacturer" placeholder="Manufacturer" class="form-control" />
+					<select name="Manufacturer" id="inputManufacturer" class="form-control">
+						<option value="Acer">Acer</option>
+						<option value="AMD">AMD</option>
+						<option value="ASRock">ASRock</option>
+						<option value="Asus">Asus</option>
+						<option value="be quiet!">be quiet!</option>
+						<option value="Cooler Master">Cooler Master</option>
+						<option value="Corsair">Corsair</option>
+						<option value="Crucial">Crucial</option>
+						<option value="Deepcool">Deepcool</option>
+						<option value="EVGA">EVGA</option>
+						<option value="Fractal Design">Fractal Design</option>
+						<option value="G.Skill">G.Skill</option>
+						<option value="Gigabyte">Gigabyte</option>
+						<option value="Intel">Intel</option>
+						<option value="Kingston">Kingston</option>
+						<option value="KIOXIA">KIOXIA</option>
+						<option value="Lian Li">Lian Li</option>
+						<option value="Noctua">Noctua</option>
+						<option value="NVIDIA">NVIDIA</option>
+						<option value="NZXT">NZXT</option>
+						<option value="Samsung">Samsung</option>
+						<option value="Sapphire">Sapphire</option>
+						<option value="Seagate">Seagate</option>
+						<option value="SeaSonic">SeaSonic</option>
+						<option value="Thermaltake">Thermaltake</option>
+						<option value="Western Digital">Western Digital</option>
+						<option value="XFX">XFX</option>
+						<option value="Zotac">Zotac</option>
+					</select>
 				</div>
 			</div>
 			<div class="col-sm">
@@ -83,13 +121,27 @@
 			<div class="col-sm">
 				<div class="form-outline">
 					<label class="form-label">Color</label>
-					<input type="text" id="inputColor" placeholder="Color" class="form-control" />
+					<select name="Color" id="inputColor" class="form-control">
+						<option value="Beige">Beige</option>
+						<option value="Black">Black</option>
+						<option value="Blue">Blue</option>
+						<option value="Camo">Camo</option>
+						<option value="Gold">Gold</option>
+						<option value="Grey">Grey</option>
+						<option value="Green">Green</option>
+						<option value="Orange">Orange</option>
+						<option value="Purple">Purple</option>
+						<option value="Red">Red</option>
+						<option value="Silver">Silver</option>
+						<option value="Yellow">Yellow</option>
+						<option value="White">White</option>
+					</select>
 				</div>
 			</div>
 			<div class="col-sm">
 				<div class="form-outline">
 					<label class="form-label">Photo</label>
-					<input type="text" id="inputPhoto" placeholder="Photo" class="form-control" />
+					<input type="url" id="inputPhoto" placeholder="Photo" class="form-control" />
 				</div>
 			</div>
 		</div>
@@ -98,7 +150,7 @@
 	</div>
 	<br>
 	<!--Tabela-->
-	<table class="table" style="margin-left: 2%; margin-top: 5%; width: 50%; border-top: 1px solid #dee2e6;">
+	<table class="table" style="margin-left: 2%; margin-top: 5%; width: 65%; border-top: 1px solid #dee2e6;">
 		<thead>
 			<tr>
 				<th scope="col">#</th>
@@ -155,21 +207,31 @@
 		xhttp.open("POST", "http://localhost:3000/deleteComponent", true);
 		xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
 		xhttp.send(JSON.stringify({ id: id }));
+
+		deleteRow(id);
+	};
+
+	let deleteRow = function (id) {
+		let row = document.getElementById('component-id-' + id);
+
+		row.remove();
 	};
 
 	let buildNewRow = function (component) {
 		let rows = document.getElementsByTagName("tbody")[0].innerHTML ?? '';
 		let newRow = '';
 
-		newRow += '<tr>';
-		newRow += '<td>' + component.serial + '</td>';
-		newRow += '<td>' + component.price + '</td>';
-		newRow += '<td>' + component.category + '</td>';
-		newRow += '<td>' + component.manufacturer + '</td>';
-		newRow += '<td>' + component.model + '</td>';
-		newRow += '<td>' + component.color + '</td>';
-		newRow += '<td>' + component.photo + '</td>';
-		newRow += '</tr>';
+		rows += '<tr data-p-id="component-id-' + component.id + '" id="component-id-' + component.id + '">';
+		rows += '<td> <button type="button" class="btn btn-primary btn-sm" onclick="clickEditComponent(' + component.id + ')">e</button> </td>';
+		rows += '<td>' + component.serial + '</td>';
+		rows += '<td>' + component.price + '€</td>';
+		rows += '<td>' + component.category + '</td>';
+		rows += '<td>' + component.manufacturer + '</td>';
+		rows += '<td>' + component.model + '</td>';
+		rows += '<td>' + component.color + '</td>';
+		rows += '<td>' + '<img src="' + component.photo + '" style="height: 75px; width: 75px; object-fit: cover;" ></td>';
+		rows += '<td> <button type="button" class="btn btn-danger btn-sm" onclick="clickDeleteComponent(' + component.id + ')">x</button> </td>';
+		rows += '</tr>';
 
 		document.getElementsByTagName("tbody")[0].innerHTML = rows + newRow
 	};
@@ -181,12 +243,12 @@
 			rows += '<tr data-p-id="component-id-' + component.id + '" id="component-id-' + component.id + '">';
 			rows += '<td> <button type="button" class="btn btn-primary btn-sm" onclick="clickEditComponent(' + component.id + ')">e</button> </td>';
 			rows += '<td>' + component.serial + '</td>';
-			rows += '<td>' + component.price + '</td>';
+			rows += '<td>' + component.price + '€</td>';
 			rows += '<td>' + component.category + '</td>';
 			rows += '<td>' + component.manufacturer + '</td>';
 			rows += '<td>' + component.model + '</td>';
 			rows += '<td>' + component.color + '</td>';
-			rows += '<td>' + component.photo + '</td>';
+			rows += '<td>' + '<img src="' + component.photo + '" style="height: 75px; width: 75px;object-fit: cover;" ></td>';
 			rows += '<td> <button type="button" class="btn btn-danger btn-sm" onclick="clickDeleteComponent(' + component.id + ')">x</button> </td>';
 			rows += '</tr>';
 		}
@@ -196,16 +258,16 @@
 
 	let clickEditComponent = function (id) {
 		let component = listOfComponents.find(i => i.id === id);
-
 		let editRow = '';
+
 		editRow += '<td> <button type="button" class="btn btn-success btn-sm" onclick="clickUpdateComponent(' + component.id + ')">u</button> </td>';
-		editRow += '<td> <input type="text" class="form-control" id="tblInputSerial-' + component.id + '" value="' + component.serial + '"  ></td>';
-		editRow += '<td> <input type="text" class="form-control" id="tblInputPrice-' + component.id + '" value="' + component.price + '"  ></td>';
-		editRow += '<td> <input type="text" class="form-control" id="tblInputCategory-' + component.id + '" value="' + component.category + '"  ></td>';
-		editRow += '<td> <input type="text" class="form-control" id="tblInputManufacturer-' + component.id + '" value="' + component.manufacturer + '"  ></td>';
-		editRow += '<td> <input type="text" class="form-control" id="tblInputModel-' + component.id + '" value="' + component.model + '"  ></td>';
-		editRow += '<td> <input type="text" class="form-control" id="tblInputColor-' + component.id + '" value="' + component.color + '"  ></td>';
-		editRow += '<td> <input type="text" class="form-control" id="tblInputPhoto-' + component.id + '" value="' + component.photo + '"  ></td>';
+		editRow += '<td> <input type="text" class="form-control" id="tblInputSerial-' + component.id + '" value="' + component.serial + '" ></td>';
+		editRow += '<td> <input type="text" class="form-control" id="tblInputPrice-' + component.id + '" value="' + component.price + '€" ></td>';
+		editRow += '<td> <input type="text" class="form-control" id="tblInputCategory-' + component.id + '" value="' + component.category + '" ></td>';
+		editRow += '<td> <input type="text" class="form-control" id="tblInputManufacturer-' + component.id + '" value="' + component.manufacturer + '" ></td>';
+		editRow += '<td> <input type="text" class="form-control" id="tblInputModel-' + component.id + '" value="' + component.model + '" ></td>';
+		editRow += '<td> <input type="text" class="form-control" id="tblInputColor-' + component.id + '" value="' + component.color + '" ></td>';
+		editRow += '<td> <input type="text" class="form-control" id="tblInputPhoto-' + component.id + '" value="' + component.photo + '" ></td>';
 		editRow += '<td> <button type="button" class="btn btn-warning btn-sm" onclick="clickCancelEdit(' + component.id + ')">x</button> </td>';
 
 		document.querySelector('[data-p-id=component-id-' + component.id + ']').innerHTML = editRow;
@@ -217,12 +279,12 @@
 		let editRow = '';
 		editRow += '<td> <button type="button" class="btn btn-primary btn-sm" onclick="clickEditComponent(' + component.id + ')">e</button> </td>';
 		editRow += '<td> ' + component.serial + '</td>';
-		editRow += '<td>' + component.price + '</td>';
+		editRow += '<td>' + component.price + '€</td>';
 		editRow += '<td>' + component.category + '</td>';
 		editRow += '<td>' + component.manufacturer + '</td>';
 		editRow += '<td>' + component.model + '</td>';
 		editRow += '<td>' + component.color + '</td>';
-		editRow += '<td>' + component.photo + '</td>';
+		editRow += '<td>' + '<img src="' + component.photo + '" style="height: 75px; width: 75px; object-fit: cover;" >' + '</td>';
 		editRow += '<td> <button type="button" class="btn btn-danger btn-sm" onclick="clickDeleteComponent(' + component.id + ')">x</button> </td>';
 
 		document.querySelector('[data-p-id=component-id-' + component.id + ']').innerHTML = editRow;
@@ -244,6 +306,8 @@
 		xhttp.open("POST", "http://localhost:3000/updateComponent", true);
 		xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
 		xhttp.send(JSON.stringify(component));
+
+		clickCancelEdit(id);
 	};
 
 
@@ -269,6 +333,14 @@
 			color: color,
 			photo: photo,
 		})
+
+		document.getElementById('inputSerial').value = '';
+		document.getElementById('inputPrice').value = 0;
+		document.getElementById('inputCategory').value = 'Cases';
+		document.getElementById('inputManufacturer').value = 'Acer';
+		document.getElementById('inputModel').value = '';
+		document.getElementById('inputColor').value = 'Beige';
+		document.getElementById('inputPhoto').value = '';
 	};
 
 	document.addEventListener("DOMContentLoaded", () => {
@@ -283,8 +355,8 @@
 </html>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
-    </script>
+	integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
+	</script>
 <script src="js/index.js"></script>
 
 </html>
