@@ -15,28 +15,31 @@
 </head>
 
 <header>
-    <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark" id="navbar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-dark" id="navbar">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.html">
-                <img src="images/logo.jpg" alt="ATECDATA" height="70">
+                <img src="images/logo.jpg" alt="ATECDATA" height="70" />
             </a>
-
-            <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas"
-                data-bs-target="#offcanvasDarkNavbar" aria-controls="offcanvasDarkNavbar"
-                aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
-                aria-labelledby="offcanvasDarkNavbarLabel" id="offcanvasDarkNavbar">
+            <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
+                        <a class="nav-link" aria-current="page" href="index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="contacts.html">Contact Us</a>
+                        <a class="nav-link" href="contacts.html">Contacts Us</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="about.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="buy.html"><i class="fas fa-cart-shopping"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html"><i class="fas fa-user"></i></a>
                     </li>
                 </ul>
             </div>
@@ -45,54 +48,240 @@
 </header>
 
 <body>
-    <!--Campos para inserir informação-->
-    <div class="container" style="margin-left: 0%;">
-        <div class="row g-2" style="margin-left: 2%; margin-top: 1%;">
-            <div class="col-sm">
-                <div class="form-outline">
-                    <label class="form-label" for="form10Example1" style="color: white; font-weight: bold;">Image</label>
-                    <input type="text" id="image" placeholder="Image URL" class="form-control" />
-                </div>
-            </div>
-            <div class="col-sm">
-                <div class="form-outline">
-                    <label class="form-label" for="form10Example2" style="color: white; font-weight: bold;">Name</label>
-                    <input type="text" id="name" placeholder="Item Name" class="form-control" />
-                </div>
-            </div>
-            <div class="col-sm">
-                <div class="form-outline">
-                    <label class="form-label" for="form10Example3" style="color: white; font-weight: bold;">Category</label>
-                    <input type="text" id="category" placeholder="Item Category" class="form-control" />
-                </div>
-            </div>
-            <div class="col-sm">
-                <div class="form-outline">
-                    <label class="form-label" for="form10Example3" style="color: white; font-weight: bold;">Description</label>
-                    <input type="text" id="description" placeholder="Item Description" class="form-control" />
-                </div>
-            </div>
-        </div>
-        <button type="button" onclick="addRow()" class="btn btn-primary" id="submit"
-            style="margin-left: 2%; float: right; margin-top: 1%;">+ Add</button>
-    </div>
-    <br>
-    <!--Tabela-->
-    <table class="table" style="margin-left: 2%; margin-top: 5%; width: 50%; border-top: 1px solid #dee2e6;">
-        <thead>
-            <tr>
-                <td><b>Image</b></td>
-                <td><b>Name</b></td>
-                <td><b>Category</b></td>
-                <td><b>Description</b></td>
-            </tr>
-        </thead>
-        <tbody id="tb">
-            <tr>
-            </tr>
-        </tbody>
-    </table>
+	<!--Campos para inserir informação-->
+	<div class="container" style="margin-left: 0%;">
+		<div class="row g-2" style="margin-left: 2%; margin-top: 1%;">
+			<div class="col-sm">
+				<div class="form-outline">
+					<label class="form-label">Serial</label>
+					<input type="text" id="inputSerial" placeholder="Serial" class="form-control" />
+				</div>
+			</div>
+			<div class="col-sm">
+				<div class="form-outline">
+					<label class="form-label">Price</label>
+					<input type="text" id="inputPrice" placeholder="Price" class="form-control" />
+				</div>
+			</div>
+			<div class="col-sm">
+				<div class="form-outline">
+					<label class="form-label">Category</label>
+					<input type="text" id="inputCategory" placeholder="Category" class="form-control" />
+				</div>
+			</div>
+			<div class="col-sm">
+				<div class="form-outline">
+					<label class="form-label">Manufacturer</label>
+					<input type="text" id="inputManufacturer" placeholder="Manufacturer" class="form-control" />
+				</div>
+			</div>
+			<div class="col-sm">
+				<div class="form-outline">
+					<label class="form-label">Model</label>
+					<input type="text" id="inputModel" placeholder="Model" class="form-control" />
+				</div>
+			</div>
+			<div class="col-sm">
+				<div class="form-outline">
+					<label class="form-label">Color</label>
+					<input type="text" id="inputColor" placeholder="Color" class="form-control" />
+				</div>
+			</div>
+			<div class="col-sm">
+				<div class="form-outline">
+					<label class="form-label">Photo</label>
+					<input type="text" id="inputPhoto" placeholder="Photo" class="form-control" />
+				</div>
+			</div>
+		</div>
+		<button type="button" onclick="clickAddComponent()" class="btn btn-primary" id="submit"
+			style="margin-left: 2%; float: right; margin-top: 1%;">+ Add</button>
+	</div>
+	<br>
+	<!--Tabela-->
+	<table class="table" style="margin-left: 2%; margin-top: 5%; width: 50%; border-top: 1px solid #dee2e6;">
+		<thead>
+			<tr>
+				<th scope="col">#</th>
+				<th scope="col">Serial</th>
+				<th scope="col">Price</th>
+				<th scope="col">Category</th>
+				<th scope="col">Manufacturer</th>
+				<th scope="col">Model</th>
+				<th scope="col">Color</th>
+				<th scope="col">Photo</th>
+			</tr>
+		</thead>
+		<tbody id="tb">
+			<tr>
+			</tr>
+		</tbody>
+	</table>
 </body>
+
+<script>
+	let listOfComponents = [];
+	let getComponents = function () {
+		let xhttp = new XMLHttpRequest();
+
+		xhttp.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				listOfComponents = JSON.parse(xhttp.responseText);
+				buildRows(listOfComponents);
+			}
+		};
+
+		xhttp.open("GET", "http://localhost:3000/components", true);
+		xhttp.send();
+	};
+
+	let insertComponent = function (component) {
+		let xhttp = new XMLHttpRequest();
+
+		xhttp.onreadystatechange = function () {
+			if (this.readyState == 4 && this.status == 200) {
+				let component = JSON.parse(xhttp.responseText);
+				buildNewRow(component);
+			}
+		};
+
+		xhttp.open("POST", "http://localhost:3000/addComponent", true);
+		xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
+		xhttp.send(JSON.stringify(component));
+	};
+
+	let deleteComponent = function (id) {
+		let xhttp = new XMLHttpRequest();
+
+		xhttp.open("POST", "http://localhost:3000/deleteComponent", true);
+		xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
+		xhttp.send(JSON.stringify({ id: id }));
+	};
+
+	let buildNewRow = function (component) {
+		let rows = document.getElementsByTagName("tbody")[0].innerHTML ?? '';
+		let newRow = '';
+
+		newRow += '<tr>';
+		newRow += '<td>' + component.serial + '</td>';
+		newRow += '<td>' + component.price + '</td>';
+		newRow += '<td>' + component.category + '</td>';
+		newRow += '<td>' + component.manufacturer + '</td>';
+		newRow += '<td>' + component.model + '</td>';
+		newRow += '<td>' + component.color + '</td>';
+		newRow += '<td>' + component.photo + '</td>';
+		newRow += '</tr>';
+
+		document.getElementsByTagName("tbody")[0].innerHTML = rows + newRow
+	};
+
+	let buildRows = function (peops) {
+		let rows = '';
+
+		for (let component of peops) {
+			rows += '<tr data-p-id="component-id-' + component.id + '" id="component-id-' + component.id + '">';
+			rows += '<td> <button type="button" class="btn btn-primary btn-sm" onclick="clickEditComponent(' + component.id + ')">e</button> </td>';
+			rows += '<td>' + component.serial + '</td>';
+			rows += '<td>' + component.price + '</td>';
+			rows += '<td>' + component.category + '</td>';
+			rows += '<td>' + component.manufacturer + '</td>';
+			rows += '<td>' + component.model + '</td>';
+			rows += '<td>' + component.color + '</td>';
+			rows += '<td>' + component.photo + '</td>';
+			rows += '<td> <button type="button" class="btn btn-danger btn-sm" onclick="clickDeleteComponent(' + component.id + ')">x</button> </td>';
+			rows += '</tr>';
+		}
+
+		document.getElementsByTagName("tbody")[0].innerHTML = rows;
+	};
+
+	let clickEditComponent = function (id) {
+		let component = listOfComponents.find(i => i.id === id);
+
+		let editRow = '';
+		editRow += '<td> <button type="button" class="btn btn-success btn-sm" onclick="clickUpdateComponent(' + component.id + ')">u</button> </td>';
+		editRow += '<td> <input type="text" class="form-control" id="tblInputSerial-' + component.id + '" value="' + component.serial + '"  ></td>';
+		editRow += '<td> <input type="text" class="form-control" id="tblInputPrice-' + component.id + '" value="' + component.price + '"  ></td>';
+		editRow += '<td> <input type="text" class="form-control" id="tblInputCategory-' + component.id + '" value="' + component.category + '"  ></td>';
+		editRow += '<td> <input type="text" class="form-control" id="tblInputManufacturer-' + component.id + '" value="' + component.manufacturer + '"  ></td>';
+		editRow += '<td> <input type="text" class="form-control" id="tblInputModel-' + component.id + '" value="' + component.model + '"  ></td>';
+		editRow += '<td> <input type="text" class="form-control" id="tblInputColor-' + component.id + '" value="' + component.color + '"  ></td>';
+		editRow += '<td> <input type="text" class="form-control" id="tblInputPhoto-' + component.id + '" value="' + component.photo + '"  ></td>';
+		editRow += '<td> <button type="button" class="btn btn-warning btn-sm" onclick="clickCancelEdit(' + component.id + ')">x</button> </td>';
+
+		document.querySelector('[data-p-id=component-id-' + component.id + ']').innerHTML = editRow;
+	};
+
+	let clickCancelEdit = function (id) {
+		let component = listOfComponents.find(i => i.id === id);
+
+		let editRow = '';
+		editRow += '<td> <button type="button" class="btn btn-primary btn-sm" onclick="clickEditComponent(' + component.id + ')">e</button> </td>';
+		editRow += '<td> ' + component.serial + '</td>';
+		editRow += '<td>' + component.price + '</td>';
+		editRow += '<td>' + component.category + '</td>';
+		editRow += '<td>' + component.manufacturer + '</td>';
+		editRow += '<td>' + component.model + '</td>';
+		editRow += '<td>' + component.color + '</td>';
+		editRow += '<td>' + component.photo + '</td>';
+		editRow += '<td> <button type="button" class="btn btn-danger btn-sm" onclick="clickDeleteComponent(' + component.id + ')">x</button> </td>';
+
+		document.querySelector('[data-p-id=component-id-' + component.id + ']').innerHTML = editRow;
+	};
+
+	let clickUpdateComponent = function (id) {
+		let component = listOfComponents.find(i => i.id === id);
+
+		component.serial = document.getElementById('tblInputSerial-' + id).value;
+		component.price = document.getElementById('tblInputPrice-' + id).value;
+		component.category = document.getElementById('tblInputCategory-' + id).value;
+		component.manufacturer = document.getElementById('tblInputManufacturer-' + id).value;
+		component.model = document.getElementById('tblInputModel-' + id).value;
+		component.color = document.getElementById('tblInputColor-' + id).value;
+		component.photo = document.getElementById('tblInputPhoto-' + id).value;
+
+		let xhttp = new XMLHttpRequest();
+
+		xhttp.open("POST", "http://localhost:3000/updateComponent", true);
+		xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
+		xhttp.send(JSON.stringify(component));
+	};
+
+
+	let clickDeleteComponent = function (id) {
+		deleteComponent(id)
+	};
+
+	let clickAddComponent = function () {
+		let serial = document.getElementById('inputSerial').value;
+		let price = document.getElementById('inputPrice').value;
+		let category = document.getElementById('inputCategory').value;
+		let manufacturer = document.getElementById('inputManufacturer').value;
+		let model = document.getElementById('inputModel').value;
+		let color = document.getElementById('inputColor').value;
+		let photo = document.getElementById('inputPhoto').value;
+
+		insertComponent({
+			serial: serial,
+			price: price,
+			category: category,
+			manufacturer: manufacturer,
+			model: model,
+			color: color,
+			photo: photo,
+		})
+	};
+
+	document.addEventListener("DOMContentLoaded", () => {
+		getComponents();
+	}); 
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
+	</script>
+
+</html>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">

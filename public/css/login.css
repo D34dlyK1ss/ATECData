@@ -24,23 +24,6 @@ body {
   color: white;
 }
 
-body a {
-  text-decoration: none;
-  color: orange;
-}
-
-body a:hover {
-  text-decoration: underline;
-}
-
-ol {
-  list-style-type: none;
-}
-
-ul {
-  list-style-type: none;
-}
-
 @media (max-width: 991px) {
   .nav-item {
     margin-top: 3%;
