@@ -1,86 +1,84 @@
 {
 	"components": [
 		{
-			"id":  0,
 			"serial": "7C56-002R",
-			"price": 130,
-			"category": "motherboards",
+			"price": 135,
+			"category": "Motherboards",
 			"manufacturer": "MSI",
 			"model": "ATX AMD B550 AM4",
-			"color": "black/silver",
-			"photo": null
+			"color": "Black/Silver",
+			"photo": null,
+			"id": 0
 		},
 		{
-			"id":  1,
 			"serial": "ACFRE00101A",
 			"price": 125,
-			"category": "coolers",
+			"category": "Coolers",
 			"manufacturer": "ARCTIC",
 			"model": "Liquid Freezer II 360 A-RGB",
-			"color": "black",
-			"photo": null
+			"color": "Black",
+			"photo": null,
+			"id": 1
 		},
 		{
-			"id":  2,
 			"serial": "100-100000065BOX",
 			"price": 170,
-			"category": "processors",
+			"category": "Processors",
 			"manufacturer": "AMD",
 			"model": "Ryzen 5 5600X 3.7 GHz AM4",
 			"color": null,
-			"photo": null
+			"photo": null,
+			"id": 2
 		},
 		{
-			"id":  3,
 			"serial": "90YV0GC0-M0NA10",
 			"price": 360,
-			"category": "graphics_cards",
+			"category": "Graphics Cards",
 			"manufacturer": "Asus",
 			"model": "TUF GAMING OC V2 GeForce RTX 3060 12GB GDDR6",
-			"color": "black",
-			"photo": null
+			"color": "Black",
+			"photo": null,
+			"id": 3
 		},
 		{
-			"id":  4,
 			"serial": "PC-O11DX",
 			"price": 120,
-			"category": "cases",
+			"category": "Cases",
 			"manufacturer": "Lian Li",
 			"model": "PC-O11 ATX",
-			"color": "black",
-			"photo": null
+			"color": "Black",
+			"photo": null,
+			"id": 4
 		},
 		{
-			"id":  5,
 			"serial": "MZ-V8P1T0BW",
 			"price": 95,
-			"category": "storage",
+			"category": "Storage",
 			"manufacturer": "Samsung",
 			"model": "SSD 980 Pro 1 TB",
-			"color": "black",
-			"photo": null
+			"color": "Black",
+			"photo": null,
+			"id": 5
 		},
 		{
-			"id":  6,
 			"serial": "F4-3600C18D-16GTZRX",
 			"price": 65,
-			"category": "memories",
+			"category": "Memory",
 			"manufacturer": "G.SKILL",
 			"model": "Trident Z RGB 16GB (2 x 8GB) DDR4",
-			"color": "black",
-			"photo": null
+			"color": "Black",
+			"photo": null,
+			"id": 6
 		},
 		{
-			"id":  7,
 			"serial": "SSR-850FX",
 			"price": 170,
-			"category": "power_supplies",
+			"category": "Power Supplies",
 			"manufacturer": "SeaSonic",
 			"model": "FOCUS PLUS 850W 80+ Gold",
-			"color": "black",
-			"photo": null
+			"color": "Black",
+			"photo": null,
+			"id": 7
 		}
-	],
-	
-	"lastId": 7
+	]
 }
