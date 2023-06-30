@@ -2,28 +2,28 @@
 	"components": [
 		{
 			"serial": "7C56-002R",
-			"price": 135,
-			"category": "Motherboards",
+			"price": "135",
+			"category": "motherboards",
 			"manufacturer": "MSI",
 			"model": "ATX AMD B550 AM4",
-			"color": "Black/Silver",
+			"color": "black/silver",
 			"photo": null,
 			"id": 0
 		},
 		{
 			"serial": "ACFRE00101A",
 			"price": 125,
-			"category": "Coolers",
+			"category": "coolers",
 			"manufacturer": "ARCTIC",
 			"model": "Liquid Freezer II 360 A-RGB",
-			"color": "Black",
+			"color": "black",
 			"photo": null,
 			"id": 1
 		},
 		{
 			"serial": "100-100000065BOX",
 			"price": 170,
-			"category": "Processors",
+			"category": "processors",
 			"manufacturer": "AMD",
 			"model": "Ryzen 5 5600X 3.7 GHz AM4",
 			"color": null,
@@ -33,52 +33,82 @@
 		{
 			"serial": "90YV0GC0-M0NA10",
 			"price": 360,
-			"category": "Graphics Cards",
+			"category": "graphics_cards",
 			"manufacturer": "Asus",
 			"model": "TUF GAMING OC V2 GeForce RTX 3060 12GB GDDR6",
-			"color": "Black",
+			"color": "black",
 			"photo": null,
 			"id": 3
 		},
 		{
 			"serial": "PC-O11DX",
 			"price": 120,
-			"category": "Cases",
+			"category": "cases",
 			"manufacturer": "Lian Li",
 			"model": "PC-O11 ATX",
-			"color": "Black",
+			"color": "black",
 			"photo": null,
 			"id": 4
 		},
 		{
 			"serial": "MZ-V8P1T0BW",
 			"price": 95,
-			"category": "Storage",
+			"category": "storage",
 			"manufacturer": "Samsung",
 			"model": "SSD 980 Pro 1 TB",
-			"color": "Black",
+			"color": "black",
 			"photo": null,
 			"id": 5
 		},
 		{
 			"serial": "F4-3600C18D-16GTZRX",
 			"price": 65,
-			"category": "Memory",
+			"category": "memories",
 			"manufacturer": "G.SKILL",
 			"model": "Trident Z RGB 16GB (2 x 8GB) DDR4",
-			"color": "Black",
+			"color": "black",
 			"photo": null,
 			"id": 6
 		},
 		{
 			"serial": "SSR-850FX",
 			"price": 170,
-			"category": "Power Supplies",
+			"category": "power_supplies",
 			"manufacturer": "SeaSonic",
 			"model": "FOCUS PLUS 850W 80+ Gold",
-			"color": "Black",
+			"color": "black",
 			"photo": null,
 			"id": 7
+		},
+		{
+			"serial": "",
+			"price": "",
+			"category": "",
+			"manufacturer": "",
+			"model": "",
+			"color": "",
+			"photo": "https://img.freepik.com/fotos-gratis/imagem-aproximada-da-cabeca-de-um-lindo-leao_181624-35855.jpg",
+			"id": 8
+		},
+		{
+			"serial": "",
+			"price": "",
+			"category": "",
+			"manufacturer": "",
+			"model": "",
+			"color": "",
+			"photo": "https://s2-techtudo.glbimg.com/Bxr-QA4_gL25CarCCxr9JQFybt8=/0x0:1024x609/924x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2022/c/u/15eppqSmeTdHkoAKM0Uw/dall-e-2.jpg",
+			"id": 9
+		},
+		{
+			"serial": "afaf-87j-87jjj",
+			"price": "300",
+			"category": "Coolers",
+			"manufacturer": "asdasd",
+			"model": "asdasdasd",
+			"color": "asdasdasd",
+			"photo": "https://static.wikia.nocookie.net/dragonball/images/8/8c/Cooler_-_The_Return_of_Cooler_-_001.png/",
+			"id": 10
 		}
 	]
 }

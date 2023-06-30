@@ -11,7 +11,9 @@ exports.databaseRepo = function () {
   return {
     update: function (component) {
       let dataJson = readDb();
-      let componentToUpdate = dataJson.components.find((x) => x.id === component.id);
+      let componentToUpdate = dataJson.components.find(
+        (x) => x.id === component.id
+      );
 
       componentToUpdate.serial = component.serial;
       componentToUpdate.price = component.price;

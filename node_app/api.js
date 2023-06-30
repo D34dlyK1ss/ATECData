@@ -2,7 +2,6 @@ const express = require("express");
 let cors = require("cors");
 let app = express();
 let dbRepo = require("./db-repo").databaseRepo();
-
 const bodyParser = require("body-parser");
 const port = 3000;
 
@@ -27,7 +26,7 @@ app.post("/deleteComponent", (req, res) => {
   let id = req.body.id;
   let result = dbRepo.delete(id);
 
-  res.send(result ? "OK" : "NOK");
+  res.send(result);
 });
 
 app.get("/components", (req, res) => {
@@ -35,5 +34,5 @@ app.get("/components", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
+  console.log(`Server is running on port ${port}`);
 });
