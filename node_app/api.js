@@ -1,7 +1,7 @@
 const express = require('express')
 var cors = require('cors')
 var app = express()
-var dbRepo = require('./dbrepo').databaseRepo();
+var dbRepo = require('./db-repo').databaseRepo();
 
 const bodyParser = require('body-parser');
 const port = 3000
@@ -28,7 +28,7 @@ app.post('/deleteComponent', (req, res) => {
     res.send(result ? 'OK' : 'NOK');
 });
 
-app.get('/people', (req, res) => {
+app.get('/components', (req, res) => {
   res.send(dbRepo.list())
 });
 

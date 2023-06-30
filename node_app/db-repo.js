@@ -26,19 +26,16 @@ exports.databaseRepo = function() {
 			return componentToUpdate;
 		},
 
-		insert: function(component) {     
+		insert: function(component) {
 			let dataJson = readDb();
-			let nextId = 1;
+			let nextId = dataJson.lastId++;
 
-			for (const component of dataJson.components) {
-				if(nextId <= component.Id) nextId = component.Id;
-			}
-
-			nextId++;
 			component.Id = nextId;
 			dataJson.components.push(component);
-
 			fs.writeFileSync(dbName, JSON.stringify(dataJson, null, '\t'));
+			
+			dataJson.lastId = nextId;
+
 			return component;
 		},
 
