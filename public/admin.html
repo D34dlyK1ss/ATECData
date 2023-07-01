@@ -49,24 +49,25 @@
 
 <body>
 	<!--Campos para inserir informação-->
-	<div class="container" style="margin-left: 0%; width: 75%;">
-		<div class="row g-2" style="margin-left: 2%; margin-top: 1%;">
+	<div id="inputs" class="container">
+		<div class="row g-2" style="margin-left: 4%; margin-top: 4%;">
 			<div class="col-sm">
 				<div class="form-outline">
 					<label class="form-label">Serial</label>
-					<input type="text" id="inputSerial" placeholder="Serial"  style="text-transform:uppercase" class="form-control" />
+					<input type="text" id="inputSerial" placeholder="Serial" style="text-transform:uppercase" class="form-control"/>
 				</div>
 			</div>
 			<div class="col-sm">
 				<div class="form-outline">
 					<label class="form-label">Price</label>
-					<input type="number" id="inputPrice" placeholder="Price" step="0.01" min="0" value="0" class="form-control" />
+					<input type="number" id="inputPrice" placeholder="Number" step="0.01" min="0" value="0" class="form-control"/>
 				</div>
 			</div>
 			<div class="col-sm">
 				<div class="form-outline">
 					<label class="form-label">Category</label>
 						<select name="Category" id="inputCategory" class="form-control">
+							<option value="-Select Category-">-Select Category-</option>
 							<option value="Cases">Cases</option>
 							<option value="Coolers">Coolers</option>
 							<option value="Graphics Cards">Graphics Cards</option>
@@ -81,6 +82,7 @@
 				<div class="form-outline">
 					<label class="form-label">Manufacturer</label>
 					<select name="Manufacturer" id="inputManufacturer" class="form-control">
+						<option value="-Select Manufacturer-">-Select Manufacturer-</option>
 						<option value="Acer">Acer</option>
 						<option value="AMD">AMD</option>
 						<option value="ASRock">ASRock</option>
@@ -122,6 +124,7 @@
 				<div class="form-outline">
 					<label class="form-label">Color</label>
 					<select name="Color" id="inputColor" class="form-control">
+						<option value="None">None</option>
 						<option value="Beige">Beige</option>
 						<option value="Black">Black</option>
 						<option value="Blue">Blue</option>
@@ -141,7 +144,13 @@
 			<div class="col-sm">
 				<div class="form-outline">
 					<label class="form-label">Photo</label>
-					<input type="url" id="inputPhoto" placeholder="Photo" class="form-control" />
+					<input type="url" id="inputPhoto" placeholder="URL" class="form-control" />
+				</div>
+			</div>
+			<div class="col-sm">
+				<div class="form-outline">
+					<label class="form-label">Stock</label>
+					<input type="number" placeholder="Number" step="1" min="0" id="inputStock" value="0" class="form-control" />
 				</div>
 			</div>
 		</div>
@@ -150,7 +159,7 @@
 	</div>
 	<br>
 	<!--Tabela-->
-	<table class="table" style="margin-left: 2%; margin-top: 5%; width: 65%; border-top: 1px solid #dee2e6;">
+	<table class="componentTable">
 		<thead>
 			<tr>
 				<th scope="col">#</th>
@@ -161,192 +170,12 @@
 				<th scope="col">Model</th>
 				<th scope="col">Color</th>
 				<th scope="col">Photo</th>
+				<th scope="col">Stock</th>
 			</tr>
 		</thead>
-		<tbody id="tb">
-			<tr>
-			</tr>
-		</tbody>
+		<tbody id="tb"></tbody>
 	</table>
 </body>
-
-<script>
-	let listOfComponents = [];
-	let getComponents = function () {
-		let xhttp = new XMLHttpRequest();
-
-		xhttp.onreadystatechange = function () {
-			if (this.readyState == 4 && this.status == 200) {
-				listOfComponents = JSON.parse(xhttp.responseText);
-				buildRows(listOfComponents);
-			}
-		};
-
-		xhttp.open("GET", "http://localhost:3000/components", true);
-		xhttp.send();
-	};
-
-	let insertComponent = function (component) {
-		let xhttp = new XMLHttpRequest();
-
-		xhttp.onreadystatechange = function () {
-			if (this.readyState == 4 && this.status == 200) {
-				let component = JSON.parse(xhttp.responseText);
-				buildNewRow(component);
-			}
-		};
-
-		xhttp.open("POST", "http://localhost:3000/addComponent", true);
-		xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
-		xhttp.send(JSON.stringify(component));
-	};
-
-	let deleteComponent = function (id) {
-		let xhttp = new XMLHttpRequest();
-
-		xhttp.open("POST", "http://localhost:3000/deleteComponent", true);
-		xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
-		xhttp.send(JSON.stringify({ id: id }));
-
-		deleteRow(id);
-	};
-
-	let deleteRow = function (id) {
-		let row = document.getElementById('component-id-' + id);
-
-		row.remove();
-	};
-
-	let buildNewRow = function (component) {
-		let rows = document.getElementsByTagName("tbody")[0].innerHTML ?? '';
-		let newRow = '';
-
-		rows += '<tr data-p-id="component-id-' + component.id + '" id="component-id-' + component.id + '">';
-		rows += '<td> <button type="button" class="btn btn-primary btn-sm" onclick="clickEditComponent(' + component.id + ')">e</button> </td>';
-		rows += '<td>' + component.serial + '</td>';
-		rows += '<td>' + component.price + '€</td>';
-		rows += '<td>' + component.category + '</td>';
-		rows += '<td>' + component.manufacturer + '</td>';
-		rows += '<td>' + component.model + '</td>';
-		rows += '<td>' + component.color + '</td>';
-		rows += '<td>' + '<img src="' + component.photo + '" style="height: 75px; width: 75px; object-fit: cover;" ></td>';
-		rows += '<td> <button type="button" class="btn btn-danger btn-sm" onclick="clickDeleteComponent(' + component.id + ')">x</button> </td>';
-		rows += '</tr>';
-
-		document.getElementsByTagName("tbody")[0].innerHTML = rows + newRow
-	};
-
-	let buildRows = function (peops) {
-		let rows = '';
-
-		for (let component of peops) {
-			rows += '<tr data-p-id="component-id-' + component.id + '" id="component-id-' + component.id + '">';
-			rows += '<td> <button type="button" class="btn btn-primary btn-sm" onclick="clickEditComponent(' + component.id + ')">e</button> </td>';
-			rows += '<td>' + component.serial + '</td>';
-			rows += '<td>' + component.price + '€</td>';
-			rows += '<td>' + component.category + '</td>';
-			rows += '<td>' + component.manufacturer + '</td>';
-			rows += '<td>' + component.model + '</td>';
-			rows += '<td>' + component.color + '</td>';
-			rows += '<td>' + '<img src="' + component.photo + '" style="height: 75px; width: 75px;object-fit: cover;" ></td>';
-			rows += '<td> <button type="button" class="btn btn-danger btn-sm" onclick="clickDeleteComponent(' + component.id + ')">x</button> </td>';
-			rows += '</tr>';
-		}
-
-		document.getElementsByTagName("tbody")[0].innerHTML = rows;
-	};
-
-	let clickEditComponent = function (id) {
-		let component = listOfComponents.find(i => i.id === id);
-		let editRow = '';
-
-		editRow += '<td> <button type="button" class="btn btn-success btn-sm" onclick="clickUpdateComponent(' + component.id + ')">u</button> </td>';
-		editRow += '<td> <input type="text" class="form-control" id="tblInputSerial-' + component.id + '" value="' + component.serial + '" ></td>';
-		editRow += '<td> <input type="text" class="form-control" id="tblInputPrice-' + component.id + '" value="' + component.price + '€" ></td>';
-		editRow += '<td> <input type="text" class="form-control" id="tblInputCategory-' + component.id + '" value="' + component.category + '" ></td>';
-		editRow += '<td> <input type="text" class="form-control" id="tblInputManufacturer-' + component.id + '" value="' + component.manufacturer + '" ></td>';
-		editRow += '<td> <input type="text" class="form-control" id="tblInputModel-' + component.id + '" value="' + component.model + '" ></td>';
-		editRow += '<td> <input type="text" class="form-control" id="tblInputColor-' + component.id + '" value="' + component.color + '" ></td>';
-		editRow += '<td> <input type="text" class="form-control" id="tblInputPhoto-' + component.id + '" value="' + component.photo + '" ></td>';
-		editRow += '<td> <button type="button" class="btn btn-warning btn-sm" onclick="clickCancelEdit(' + component.id + ')">x</button> </td>';
-
-		document.querySelector('[data-p-id=component-id-' + component.id + ']').innerHTML = editRow;
-	};
-
-	let clickCancelEdit = function (id) {
-		let component = listOfComponents.find(i => i.id === id);
-
-		let editRow = '';
-		editRow += '<td> <button type="button" class="btn btn-primary btn-sm" onclick="clickEditComponent(' + component.id + ')">e</button> </td>';
-		editRow += '<td> ' + component.serial + '</td>';
-		editRow += '<td>' + component.price + '€</td>';
-		editRow += '<td>' + component.category + '</td>';
-		editRow += '<td>' + component.manufacturer + '</td>';
-		editRow += '<td>' + component.model + '</td>';
-		editRow += '<td>' + component.color + '</td>';
-		editRow += '<td>' + '<img src="' + component.photo + '" style="height: 75px; width: 75px; object-fit: cover;" >' + '</td>';
-		editRow += '<td> <button type="button" class="btn btn-danger btn-sm" onclick="clickDeleteComponent(' + component.id + ')">x</button> </td>';
-
-		document.querySelector('[data-p-id=component-id-' + component.id + ']').innerHTML = editRow;
-	};
-
-	let clickUpdateComponent = function (id) {
-		let component = listOfComponents.find(i => i.id === id);
-
-		component.serial = document.getElementById('tblInputSerial-' + id).value;
-		component.price = document.getElementById('tblInputPrice-' + id).value;
-		component.category = document.getElementById('tblInputCategory-' + id).value;
-		component.manufacturer = document.getElementById('tblInputManufacturer-' + id).value;
-		component.model = document.getElementById('tblInputModel-' + id).value;
-		component.color = document.getElementById('tblInputColor-' + id).value;
-		component.photo = document.getElementById('tblInputPhoto-' + id).value;
-
-		let xhttp = new XMLHttpRequest();
-
-		xhttp.open("POST", "http://localhost:3000/updateComponent", true);
-		xhttp.setRequestHeader("Content-type", "application/json;charset=UTF-8");
-		xhttp.send(JSON.stringify(component));
-
-		clickCancelEdit(id);
-	};
-
-
-	let clickDeleteComponent = function (id) {
-		deleteComponent(id)
-	};
-
-	let clickAddComponent = function () {
-		let serial = document.getElementById('inputSerial').value;
-		let price = document.getElementById('inputPrice').value;
-		let category = document.getElementById('inputCategory').value;
-		let manufacturer = document.getElementById('inputManufacturer').value;
-		let model = document.getElementById('inputModel').value;
-		let color = document.getElementById('inputColor').value;
-		let photo = document.getElementById('inputPhoto').value;
-
-		insertComponent({
-			serial: serial,
-			price: price,
-			category: category,
-			manufacturer: manufacturer,
-			model: model,
-			color: color,
-			photo: photo,
-		})
-
-		document.getElementById('inputSerial').value = '';
-		document.getElementById('inputPrice').value = 0;
-		document.getElementById('inputCategory').value = 'Cases';
-		document.getElementById('inputManufacturer').value = 'Acer';
-		document.getElementById('inputModel').value = '';
-		document.getElementById('inputColor').value = 'Beige';
-		document.getElementById('inputPhoto').value = '';
-	};
-
-	document.addEventListener("DOMContentLoaded", () => {
-		getComponents();
-	}); 
-</script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
@@ -357,6 +186,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
 	integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
 	</script>
-<script src="js/index.js"></script>
+<script src="js/admin.js"></script>
 
 </html>
