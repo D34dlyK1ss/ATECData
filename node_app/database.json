@@ -5,10 +5,11 @@
 			"price": "135",
 			"category": "Motherboards",
 			"manufacturer": "MSI",
-			"model": "ATX AMD B550 AM4",
+			"model": "ATX AMD B550-A PRO AM4",
 			"color": "Silver",
 			"photo": "https://cdn-reichelt.de/bilder/web/xxl_ws/E200/MSI_7C56-002R_01.png",
 			"stock": "10",
+			"details":"https://www.msi.com/Motherboard/B550-A-PRO",
 			"id": 0
 		},
 		{
@@ -20,6 +21,7 @@
 			"color": "Black",
 			"photo": "https://img.globaldata.pt/products/ACFRE00101A.jpg",
 			"stock": "8",
+			"details": "https://www.arctic.de/en/Liquid-Freezer-II-360-A-RGB/ACFRE00101A",
 			"id": 1
 		},
 		{
@@ -31,6 +33,7 @@
 			"color": "null",
 			"photo": "https://gfx.senetic.com/i/gallery/86261907_0482917425.jpg",
 			"stock": "13",
+			"details": "https://www.amd.com/pt/products/cpu/amd-ryzen-5-5600x",
 			"id": 2
 		},
 		{
@@ -42,6 +45,7 @@
 			"color": "Black",
 			"photo": "https://s1.kuantokusta.pt/img_upload/produtos_informatica/802734_3_asus-tuf-gaming-geforce-rtx-3060-oc-ed-12gb-gddr6-90yv0gc0-m0na10.jpg",
 			"stock": "11",
+			"details": "https://www.asus.com/pt/motherboards-components/graphics-cards/tuf-gaming/tuf-rtx3060-o12g-v2-gaming/",
 			"id": 3
 		},
 		{
@@ -53,6 +57,7 @@
 			"color": "Black",
 			"photo": "https://m.media-amazon.com/images/I/51wzqjFKYrL._AC_UF894,1000_QL80_.jpg",
 			"stock": "42",
+			"details": "https://lian-li.com/pt/product/pc-o11-dynamic/",
 			"id": 4
 		},
 		{
@@ -64,6 +69,7 @@
 			"color": "Black",
 			"photo": "https://s1.kuantokusta.pt/img_upload/produtos_informatica/686447_3_samsung-1tb-980-pro-mlc-v-nand-nvme-mz-v8p1t0bw.jpg",
 			"stock": "69",
+			"details": "https://www.samsung.com/pt/memory-storage/nvme-ssd/980-1tb-nvme-pcie-gen-3-mz-v8v1t0bw/",
 			"id": 5
 		},
 		{
@@ -75,6 +81,7 @@
 			"color": "Black",
 			"photo": "https://www.gskill.com/_upload/images/153671901010.png",
 			"stock": "50",
+			"details": "https://www.gskill.com/product/165/166/1536653463/F4-3200C14D-16GTZR",
 			"id": 6
 		},
 		{
@@ -86,6 +93,7 @@
 			"color": "Black",
 			"photo": "https://www.inforpereira.com/image/cache/catalog/Produtos/Componentes/FONTE%20ALIMENTAÇAO/SSR-850FX-700x700.jpg",
 			"stock": "88",
+			"details": "https://seasonic.com/focus-plus-gold",
 			"id": 7
 		}
 	]
