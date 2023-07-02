@@ -18,6 +18,7 @@ body {
 
 #inputs {
 	margin: 4% 4% 0 0;
+	width: auto;
 }
 
 .componentTable {

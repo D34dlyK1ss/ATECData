@@ -23,6 +23,7 @@ exports.databaseRepo = function () {
       componentToUpdate.color = component.color;
       componentToUpdate.photo = component.photo;
       componentToUpdate.stock = component.stock;
+      componentToUpdate.details = component.details;
 
       fs.writeFileSync(dbName, JSON.stringify(dataJson, null, "\t"));
 

@@ -1,11 +1,11 @@
-let listOfComponents = [];
+let arrayOfComponents = [];
 let getComponents = function () {
 	let xhttp = new XMLHttpRequest();
 
 	xhttp.onreadystatechange = function () {
 		if (this.readyState === 4 && this.status === 200) {
-			listOfComponents = JSON.parse(xhttp.responseText);
-			buildRows(listOfComponents);
+			arrayOfComponents = JSON.parse(xhttp.responseText);
+			buildRows(arrayOfComponents);
 		}
 	};
 
@@ -14,6 +14,16 @@ let getComponents = function () {
 };
 
 let insertComponent = function (component) {
+	const isValidUrl = urlString => {
+		let urlPattern = new RegExp('^(https?:\\/\\/)?' +
+			'((([a-z\\d]([a-z\\d-]*[a-z\\d])*)\\.)+[a-z]{2,}|' +
+			'((\\d{1,3}\\.){3}\\d{1,3}))' +
+			'(\\:\\d+)?(\\/[-a-z\\d%_.~+]*)*' +
+			'(\\?[;&a-z\\d%_.~+=-]*)?' +
+			'(\\#[-a-z\\d_]*)?$', 'i');
+		return !urlPattern.test(urlString);
+	}
+
 	let warn = "";
 	let serial = document.getElementById("inputSerial").value;
 	let price = document.getElementById("inputPrice").value;
@@ -23,15 +33,17 @@ let insertComponent = function (component) {
 	let color = document.getElementById("inputColor").value;
 	let photo = document.getElementById("inputPhoto").value;
 	let stock = document.getElementById("inputStock").value;
+	let details = document.getElementById("inputDetails").value;
 
 	if (serial.length < 3) warn += "Serial is invalid\n";
 	if (price < 0) warn += "Price is invalid\n";
-	if (category === "-Select Category-") warn += "Category is invalid\n";
-	if (manufacturer === "-Select Manufacturer-") warn += "Manufacturer is invalid\n";
+	if (category === "Select Category") warn += "Category is invalid\n";
+	if (manufacturer === "Select Manufacturer") warn += "Manufacturer is invalid\n";
 	if (model.length < 3) warn += "Model is invalid\n";
 	if (color.length < 3) warn += "Color is invalid\n";
-	if (photo.length < 3) warn += "Photo is invalid\n";
+	if (isValidUrl(photo)) warn += "Photo is invalid\n";
 	if (stock < 0) warn += "Stock is invalid\n";
+	if (isValidUrl(details)) warn += "Details is invalid\n";
 
 	if (warn.length > 0) return alert(warn);
 
@@ -82,16 +94,17 @@ let buildNewRow = function (component) {
 	rows += `<td>${component.color}</td>`;
 	rows += `<td><img src="${component.photo}" style="height: 75px; width: 75px; object-fit: cover;"></td>`;
 	rows += `<td>${component.stock}</td>`;
+	rows += `<td><a href="${component.details}">Details</a></td>`;
 	rows += `<td><button type="button" class="btn btn-danger btn-sm" onclick="clickDeleteComponent(${component.id})">X</button></td>`;
 	rows += "</tr>";
 
 	document.getElementsByTagName("tbody")[0].innerHTML = rows + newRow;
 };
 
-let buildRows = function (peops) {
+let buildRows = function (comps) {
 	let rows = "";
 
-	for (let component of peops) {
+	for (let component of comps) {
 		rows += `<tr data-p-id="component-id-${component.id}" id="component-id-${component.id}">`;
 		rows += `<td><button type="button" class="btn btn-primary btn-sm" onclick="clickEditComponent(${component.id})">E</button></td>`;
 		rows += `<td>${component.serial}</td>`;
@@ -102,6 +115,7 @@ let buildRows = function (peops) {
 		rows += `<td>${component.color}</td>`;
 		rows += `<td><img src="${component.photo}" style="height: 75px; width: 75px; object-fit: cover;"></td>`;
 		rows += `<td>${component.stock}</td>`;
+		rows += `<td><a href="${component.details}">Details</a></td>`;
 		rows += `<td><button type="button" class="btn btn-danger btn-sm" onclick="clickDeleteComponent(${component.id})">X</button></td>`;
 		rows += "</tr>";
 	}
@@ -110,24 +124,26 @@ let buildRows = function (peops) {
 };
 
 let clickEditComponent = function (id) {
-	let component = listOfComponents.find((i) => i.id === id);
+	let component = arrayOfComponents.find((i) => i.id === id);
 	let editRow = "";
 
 	editRow += `<td><button type="button" class="btn btn-success btn-sm" onclick="clickUpdateComponent(${component.id})">U</button></td>`;
 	editRow += `<td><input type="text" placeholder="Serial" style="text-transform:uppercase" class="form-control" id="tblInputSerial-${component.id}" value="${component.serial}"></td>`;
 	editRow += `<td><input type="number" placeholder="Number" step="0.01" min="0" class="form-control" id="tblInputPrice-${component.id}" value="${component.price}"></td>`;
-	editRow += `<td><select id="tblInputCategory-${component.id}" class="form-control" value="${component.category}">
+	editRow += `<td><select id="tblInputCategory-${component.id}" class="form-control">
 						<option value="Cases">Cases</option>
 						<option value="Coolers">Coolers</option>
 						<option value="Graphics Cards">Graphics Cards</option>
 						<option value="Memory">Memory</option>
+						<option value="Motherboards">Motherboards</option>
 						<option value="Power Supplies">Power Supplies</option>
 						<option value="Processors">Processors</option>
 						<option value="Storage">Storage</option>
 					</select></td>`;
-	editRow += `<td><select id="tblInputManufacturer-${component.id}" value="${component.manufacturer}" class="form-control">
+	editRow += `<td><select id="tblInputManufacturer-${component.id}" class="form-control">
 						<option value="Acer">Acer</option>
 						<option value="AMD">AMD</option>
+						<option value="ARCTIC">ARCTIC</option>
 						<option value="ASRock">ASRock</option>
 						<option value="Asus">Asus</option>
 						<option value="be quiet!">be quiet!</option>
@@ -144,6 +160,7 @@ let clickEditComponent = function (id) {
 						<option value="KIOXIA">KIOXIA</option>
 						<option value="Lian Li">Lian Li</option>
 						<option value="Noctua">Noctua</option>
+						<option value="MSI">MSI</option>
 						<option value="NVIDIA">NVIDIA</option>
 						<option value="NZXT">NZXT</option>
 						<option value="Samsung">Samsung</option>
@@ -156,7 +173,7 @@ let clickEditComponent = function (id) {
 						<option value="Zotac">Zotac</option>
 					</select></td>`;
 	editRow += `<td><input type="text" placeholder="Model" class="form-control" id="tblInputModel-${component.id}" value="${component.model}"></td>`;
-	editRow += `<td><select id="tblInputColor-${component.id}" value="${component.color}" class="form-control">
+	editRow += `<td><select id="tblInputColor-${component.id}" class="form-control">
 						<option value="None">None</option>
 						<option value="Beige">Beige</option>
 						<option value="Black">Black</option>
@@ -174,15 +191,20 @@ let clickEditComponent = function (id) {
 					</select></td>`;
 	editRow += `<td><input type="url" placeholder="URL" class="form-control" id="tblInputPhoto-${component.id}" value="${component.photo}"></td>`;
 	editRow += `<td><input type="number" placeholder="Number" step="1" min="0" class="form-control" id="tblInputStock-${component.id}" value="${component.stock}"></td>`;
+	editRow += `<td><input type="url" placeholder="URL" class="form-control" id="tblInputDetails-${component.id}" value="${component.details}"></td>`;
 	editRow += `<td><button type="button" class="btn btn-warning btn-sm" onclick="clickCancelEdit(${component.id})">X</button></td>`;
 
 	document.querySelector(`[data-p-id=component-id-${component.id}]`).innerHTML = editRow;
+
+	document.getElementById(`tblInputCategory-${component.id}`).value = component.category;
+	document.getElementById(`tblInputManufacturer-${component.id}`).value = component.manufacturer;
+	document.getElementById(`tblInputColor-${component.id}`).value = component.color;
 };
 
 let clickCancelEdit = function (id) {
-	let component = listOfComponents.find((i) => i.id === id);
-
+	let component = arrayOfComponents.find((i) => i.id === id);
 	let editRow = "";
+
 	editRow += `<td><button type="button" class="btn btn-primary btn-sm" onclick="clickEditComponent(${component.id})">E</button></td>`;
 	editRow += `<td>${component.serial}</td>`;
 	editRow += `<td>${component.price}€</td>`;
@@ -192,6 +214,7 @@ let clickCancelEdit = function (id) {
 	editRow += `<td>${component.color}</td>`;
 	editRow += `<td><img src="${component.photo}" style="height: 75px; width: 75px; object-fit: cover;"></td>`;
 	editRow += `<td>${component.stock}</td>`;
+	editRow += `<td><a href="${component.details}">Details</a></td>`;
 	editRow += `<td><button type="button" class="btn btn-danger btn-sm" onclick="clickDeleteComponent(${component.id})">X</button></td>`;
 
 	document.querySelector(`[data-p-id=component-id-${component.id}]`).innerHTML =
@@ -199,7 +222,7 @@ let clickCancelEdit = function (id) {
 };
 
 let clickUpdateComponent = function (id) {
-	let component = listOfComponents.find((i) => i.id === id);
+	let component = arrayOfComponents.find((i) => i.id === id);
 
 	component.serial = document.getElementById(`tblInputSerial-${id}`).value;
 	component.price = document.getElementById(`tblInputPrice-${id}`).value;
@@ -209,6 +232,7 @@ let clickUpdateComponent = function (id) {
 	component.color = document.getElementById(`tblInputColor-${id}`).value;
 	component.photo = document.getElementById(`tblInputPhoto-${id}`).value;
 	component.stock = document.getElementById(`tblInputStock-${id}`).value;
+	component.details = document.getElementById(`tblInputDetails-${id}`).value;
 
 	let xhttp = new XMLHttpRequest();
 
@@ -232,6 +256,7 @@ let clickAddComponent = function () {
 	let color = document.getElementById("inputColor").value;
 	let photo = document.getElementById("inputPhoto").value;
 	let stock = document.getElementById("inputStock").value;
+	let details = document.getElementById("inputDetails").value;
 
 	insertComponent({
 		serial: serial,
@@ -242,16 +267,18 @@ let clickAddComponent = function () {
 		color: color,
 		photo: photo,
 		stock: stock,
+		details: details,
 	});
 
 	document.getElementById("inputSerial").value = "";
 	document.getElementById("inputPrice").value = 0;
-	document.getElementById("inputCategory").value = "-Select Category-";
-	document.getElementById("inputManufacturer").value = "-Select Manufacturer-";
+	document.getElementById("inputCategory").value = "Select Category";
+	document.getElementById("inputManufacturer").value = "Select Manufacturer";
 	document.getElementById("inputModel").value = "";
 	document.getElementById("inputColor").value = "None";
 	document.getElementById("inputPhoto").value = "";
 	document.getElementById("inputStock").value = 0;
+	document.getElementById("inputDetails").value = "";
 };
 
 document.addEventListener("DOMContentLoaded", () => {
