@@ -12,9 +12,10 @@ body {
 	font-weight: bold;
 }
 
-.navbar-nav h1 {
-	display: none;
-}
+.nav-item {
+    margin-top: 1%;
+    font-size: 0.9em;
+  }
 
 #inputs {
 	margin: 4% 4% 0 0;
@@ -37,14 +38,20 @@ body {
 
 @media (max-width: 991px) {
 	.nav-item {
-		margin-top: 3%;
 		margin-left: 3%;
 		font-weight: bold;
-	}
-
-	.navbar-nav h1 {
+		font-size: 1.1em;
+	  }
+	
+	  #navbarNav h1 {
 		display: inline;
 		margin-top: 3%;
-		margin-left: 3%;
-	}
+		font-weight: bold;
+		color: white;
+	  }
+
+	  td {
+		font-size: 0.9em;
+	  }
+	
 }

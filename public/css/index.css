@@ -12,12 +12,17 @@ body {
   font-weight: bold;
 }
 
-.navbar-nav h1 {
+#navbarNav h1 {
   display: none;
 }
 
-.table td {
-  color: white;
+.nav-item {
+  margin-top: 1%;
+  font-size: 0.9em;
+}
+
+#navbarNav {
+  display: flex;
 }
 
 .container {
@@ -26,13 +31,23 @@ body {
 
 @media (max-width: 991px) {
   .nav-item {
+    margin-left: 3%;
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+
+  #navbarNav h1 {
+    display: inline;
     margin-top: 3%;
     margin-left: 3%;
     font-weight: bold;
+    color: white;
   }
+
   .navbar-nav h1 {
     display: inline;
     margin-top: 3%;
     margin-left: 3%;
   }
+
 }
