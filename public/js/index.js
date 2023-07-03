@@ -34,11 +34,11 @@ let buildCard = function (_product) {
 	card += `		<img src="${_product.photo}" class="card-img-top" alt="product.title"`
 	card += `			style="width: 100%; height: 200px; object-position: center">`
 	card += `		<div class="card-body">`
-	card += `			<h4 class="card-title">`
+	card += `			<h5 class="card-title">`
 	card += `				${_product.model}`
-	card += `			</h4>`
+	card += `			</h5>`
 	card += `			<div class="clearfix mb-2">`
-	card += `				<span class="float-start">`
+	card += `				<span class="float-start" style="font-size: 10px">`
 	card += `					${_product.serial}`
 	card += `				</span>`
 	card += `				<span class="float-end badge rounded-pill text-black bg-warning bg-success">`

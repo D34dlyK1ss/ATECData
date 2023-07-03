@@ -47,11 +47,11 @@ h2 {
   border-top-right-radius: calc(1rem - 1px)
 }
 
-.card h4 {
+.card h5 {
   overflow: hidden;
   height: 50px;
-  font-weight: 700;
-  font-size: 1rem;
+  font-weight: 750;
+  font-size: 0.90rem;
   font-family: Arial, Helvetica, sans-serif
 }
 

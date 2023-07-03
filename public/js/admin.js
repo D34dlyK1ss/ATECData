@@ -85,7 +85,7 @@ let buildNewRow = function (component) {
 	let newRow = "";
 
 	rows += `<tr data-p-id="component-id-${component.id}" id="component-id-${component.id}">`;
-	rows += `<td><button type="button" class="btn btn-primary btn-sm" onclick="clickEditComponent(${component.id})">E</button></td>`;
+	rows += `<td><button type="button" class="btn btn-primary btn-sm" onclick="clickEditComponent(${component.id})"><i class="fa-solid fa-user-pen"></i></button></td>`;
 	rows += `<td>${component.serial}</td>`;
 	rows += `<td>${component.price}€</td>`;
 	rows += `<td>${component.category}</td>`;
@@ -94,8 +94,8 @@ let buildNewRow = function (component) {
 	rows += `<td>${component.color}</td>`;
 	rows += `<td><img src="${component.photo}" style="height: 75px; width: 75px; object-fit: cover;"></td>`;
 	rows += `<td>${component.stock}</td>`;
-	rows += `<td><a href="${component.details}">Details</a></td>`;
-	rows += `<td><button type="button" class="btn btn-danger btn-sm" onclick="clickDeleteComponent(${component.id})">X</button></td>`;
+	rows += `<td><a href="${component.details}"><i class="fa-solid fa-circle-info"></i></a></td>`;
+	rows += `<td><button type="button" class="btn btn-danger btn-sm" onclick="clickDeleteComponent(${component.id})"><i class="fa-solid fa-trash"></i></button></td>`;
 	rows += "</tr>";
 
 	document.getElementsByTagName("tbody")[0].innerHTML = rows + newRow;
@@ -106,7 +106,7 @@ let buildRows = function (comps) {
 
 	for (let component of comps) {
 		rows += `<tr data-p-id="component-id-${component.id}" id="component-id-${component.id}">`;
-		rows += `<td><button type="button" class="btn btn-primary btn-sm" onclick="clickEditComponent(${component.id})">E</button></td>`;
+		rows += `<td><button type="button" class="btn btn-primary btn-sm" onclick="clickEditComponent(${component.id})"><i class="fa-solid fa-user-pen"></i></button></td>`;
 		rows += `<td>${component.serial}</td>`;
 		rows += `<td>${component.price}€</td>`;
 		rows += `<td>${component.category}</td>`;
@@ -115,8 +115,8 @@ let buildRows = function (comps) {
 		rows += `<td>${component.color}</td>`;
 		rows += `<td><img src="${component.photo}" style="height: 75px; width: 75px; object-fit: cover;"></td>`;
 		rows += `<td>${component.stock}</td>`;
-		rows += `<td><a href="${component.details}">Details</a></td>`;
-		rows += `<td><button type="button" class="btn btn-danger btn-sm" onclick="clickDeleteComponent(${component.id})">X</button></td>`;
+		rows += `<td><a href="${component.details}"><i class="fa-solid fa-circle-info"></i></a></td>`;
+		rows += `<td><button type="button" class="btn btn-danger btn-sm" onclick="clickDeleteComponent(${component.id})"><i class="fa-solid fa-trash"></i></button></td>`;
 		rows += "</tr>";
 	}
 
