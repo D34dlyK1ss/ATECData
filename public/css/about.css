@@ -1,4 +1,4 @@
-body{
+body {
     background-image: url(../images/background.jpg);
 }
 
@@ -6,57 +6,40 @@ body{
     background-color: rgb(34, 32, 32);
 }
 
-.nav-item > .nav-link, .nav-item > .nav-link:hover {
+.nav-item>.nav-link,
+.nav-item>.nav-link:hover {
     color: white;
     font-weight: bold;
 }
 
 .nav-item {
     font-size: 0.9em;
-  }
-
-@media (max-width: 991px) {
-	.nav-item {
-		margin-left: 3%;
-		font-weight: bold;
-		font-size: 1.1em;
-	  }
-	
-	  #navbarNav h1 {
-		display: inline;
-		margin-top: 3%;
-		font-weight: bold;
-		color: white;
-	  }
 }
 
-
-.container{
+.container {
     color: aliceblue;
     text-align: center;
     margin-top: 5%;
-
 }
-
 
 h3 {
     font-size: 50px;
 }
 
 
-hr{
+hr {
     border-top: 2px solid;
     width: 80%;
-    color:rgba(252, 252, 252, 0.63);
+    color: rgba(252, 252, 252, 0.63);
     margin-left: 10%;
     opacity: 1;
 }
 
-.row{
+.row {
     margin-top: 50px;
 }
 
-.separation{
+.separation {
     margin-top: 6%;
 }
 
@@ -78,7 +61,6 @@ hr{
     height: 100px;
     border-radius: 50%;
     overflow: hidden;
-    
 }
 
 .photo img {
@@ -89,5 +71,19 @@ hr{
 
 .name h3 {
     color: white;
-    
+}
+
+@media (max-width: 991px) {
+    .nav-item {
+        margin-left: 3%;
+        font-weight: bold;
+        font-size: 1.1em;
+    }
+
+    #navbarNav h1 {
+        display: inline;
+        margin-top: 3%;
+        font-weight: bold;
+        color: white;
+    }
 }

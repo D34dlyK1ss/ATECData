@@ -13,8 +13,8 @@ body {
 }
 
 .nav-item {
-    font-size: 0.9em;
-  }
+	font-size: 0.9em;
+}
 
 #inputs {
 	margin: 4% 4% 0 0;
@@ -41,17 +41,16 @@ body {
 		margin-left: 3%;
 		font-weight: bold;
 		font-size: 1.1em;
-	  }
-	
-	  #navbarNav h1 {
+	}
+
+	#navbarNav h1 {
 		display: inline;
 		margin-top: 3%;
 		font-weight: bold;
 		color: white;
-	  }
+	}
 
-	  td {
+	td {
 		font-size: 0.9em;
-	  }
-	
+	}
 }
