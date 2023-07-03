@@ -2,43 +2,49 @@ const express = require("express");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 
-let app = express();
-let dbRepo = require("./db-repo").databaseRepo();
-const port = 3000;
+let app = express(); // Create an instance of the Express application
+let dbRepo = require("./db-repo").databaseRepo(); 
+const port = 3000; // Specifies the port on which the server will listen
 
-app.use(cors());
-app.use(bodyParser.json());
+app.use(cors()); // Enable Cross-Origin Resource Sharing (CORS)
+app.use(bodyParser.json()); // Parse JSON request bodies
+
+// Define routes
 
 app.post("/addComponent", (req, res) => {
-	let data = req.body;
-	let insertedComponent = dbRepo.insert(data);
-
-	res.send(insertedComponent);
+  // Route for adding a component
+  let data = req.body;
+  let insertedComponent = dbRepo.insert(data);
+  res.send(insertedComponent);
 });
 
 app.post("/updateComponent", (req, res) => {
-	let data = req.body;
-	let updated = dbRepo.update(data);
-
-	res.send(updated);
+  // Route for updating a component
+  let data = req.body;
+  let updated = dbRepo.update(data);
+  res.send(updated);
 });
 
 app.post("/deleteComponent", (req, res) => {
-	let id = req.body.id;
-	let result = dbRepo.delete(id);
-
-	res.send(result);
+  // Route for deleting a component
+  let id = req.body.id;
+  let result = dbRepo.delete(id);
+  res.send(result);
 });
 
 app.get("/components", (req, res) => {
-	res.send(dbRepo.list());
+  // Route for retrieving a list of components
+  res.send(dbRepo.list());
 });
 
+// Start the server
+
 app.listen(port, () => {
-	console.log(`Server is running on port ${port}`);
-	import("open")
+  // Start the server and listen on the specified port
+  console.log(`Server is running on port ${port}`);
+  import("open") // Import the "open" library to open the HTML file in a web browser
     .then((open) => {
-      open.default("../public/index.html");
+      open.default("../public/index.html"); // Open the specified HTML file in the default web browser
     })
     .catch((error) => {
       console.error("Failed to open the HTML file:", error);

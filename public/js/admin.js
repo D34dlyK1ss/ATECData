@@ -13,6 +13,7 @@ let getComponents = function () {
 	xhttp.send();
 };
 
+//verifing if its an url or not
 let insertComponent = function (component) {
 	const isValidUrl = urlString => {
 		let urlPattern = new RegExp('^(https?:\\/\\/)?' +
@@ -63,6 +64,7 @@ let insertComponent = function (component) {
 	getComponents();
 };
 
+//delete components in db
 let deleteComponent = function (id) {
 	let xhttp = new XMLHttpRequest();
 
@@ -74,12 +76,13 @@ let deleteComponent = function (id) {
 	getComponents();
 };
 
+// for organizing purposes this deleteRow exists
 let deleteRow = function (id) {
 	let row = document.getElementById(`component-id-${id}`);
 
 	row.remove();
 };
-
+//adds a new row when you create a row in the admin.html this is for performance purposes, so we don't get the components from the db to add to the rows everytime we add a new component
 let buildNewRow = function (component) {
 	let rows = document.getElementsByTagName("tbody")[0].innerHTML ?? "";
 	let newRow = "";
@@ -101,6 +104,7 @@ let buildNewRow = function (component) {
 	document.getElementsByTagName("tbody")[0].innerHTML = rows + newRow;
 };
 
+//creates rows based on what components are in the database
 let buildRows = function (comps) {
 	let rows = "";
 
@@ -123,6 +127,7 @@ let buildRows = function (comps) {
 	document.getElementsByTagName("tbody")[0].innerHTML = rows;
 };
 
+//to edit components
 let clickEditComponent = function (id) {
 	let component = arrayOfComponents.find((i) => i.id === id);
 	let editRow = "";
@@ -201,6 +206,7 @@ let clickEditComponent = function (id) {
 	document.getElementById(`tblInputColor-${component.id}`).value = component.color;
 };
 
+//canceling changes to components when editing
 let clickCancelEdit = function (id) {
 	let component = arrayOfComponents.find((i) => i.id === id);
 	let editRow = "";
@@ -220,7 +226,7 @@ let clickCancelEdit = function (id) {
 	document.querySelector(`[data-p-id=component-id-${component.id}]`).innerHTML =
 		editRow;
 };
-
+//to accept changes made to a component
 let clickUpdateComponent = function (id) {
 	let component = arrayOfComponents.find((i) => i.id === id);
 
@@ -243,10 +249,12 @@ let clickUpdateComponent = function (id) {
 	clickCancelEdit(id);
 };
 
+// delet components
 let clickDeleteComponent = function (id) {
 	deleteComponent(id);
 };
 
+//add components
 let clickAddComponent = function () {
 	let serial = document.getElementById("inputSerial").value;
 	let price = document.getElementById("inputPrice").value;
@@ -281,6 +289,7 @@ let clickAddComponent = function () {
 	document.getElementById("inputDetails").value = "";
 };
 
+//this ensures that when the website is completly loaded and is ready to be manipulated and interacted with, the event lister will execute the 'getComponents' function.
 document.addEventListener("DOMContentLoaded", () => {
 	getComponents();
 });
