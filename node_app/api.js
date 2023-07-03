@@ -1,38 +1,46 @@
 const express = require("express");
-let cors = require("cors");
+const cors = require("cors");
+const bodyParser = require("body-parser");
+
 let app = express();
 let dbRepo = require("./db-repo").databaseRepo();
-const bodyParser = require("body-parser");
 const port = 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
 
 app.post("/addComponent", (req, res) => {
-  let data = req.body;
-  let insertedComponent = dbRepo.insert(data);
+	let data = req.body;
+	let insertedComponent = dbRepo.insert(data);
 
-  res.send(insertedComponent);
+	res.send(insertedComponent);
 });
 
 app.post("/updateComponent", (req, res) => {
-  let data = req.body;
-  let updated = dbRepo.update(data);
+	let data = req.body;
+	let updated = dbRepo.update(data);
 
-  res.send(updated);
+	res.send(updated);
 });
 
 app.post("/deleteComponent", (req, res) => {
-  let id = req.body.id;
-  let result = dbRepo.delete(id);
+	let id = req.body.id;
+	let result = dbRepo.delete(id);
 
-  res.send(result);
+	res.send(result);
 });
 
 app.get("/components", (req, res) => {
-  res.send(dbRepo.list());
+	res.send(dbRepo.list());
 });
 
 app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
+	console.log(`Server is running on port ${port}`);
+	import("open")
+    .then((open) => {
+      open.default("../public/index.html");
+    })
+    .catch((error) => {
+      console.error("Failed to open the HTML file:", error);
+    });
 });
