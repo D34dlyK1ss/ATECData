@@ -191,8 +191,12 @@
 				</div>
 			</div>
 			<div class="col-xs col-sm col-md">
-				<button type="button" onclick="clickAddComponent()" class="btn btn-primary" id="submit"><i
-						class="fa-solid fa-circle-plus"></i></button>
+				<div class="form-outline">
+					<label class="form-label text-light">&nbsp;</label>
+					<br>
+					<button type="button" onclick="clickAddComponent()" class="btn btn-primary" id="submit"><i
+							class="fa-solid fa-circle-plus"></i></button>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -201,7 +205,7 @@
 		<table class="componentTable">
 			<thead>
 				<tr>
-					<th scope="col">#</th>
+					<th scope="col"></th>
 					<th scope="col">Serial</th>
 					<th scope="col">Price</th>
 					<th scope="col">Category</th>
@@ -211,7 +215,7 @@
 					<th scope="col">Photo</th>
 					<th scope="col">Stock</th>
 					<th scope="col">Details</th>
-					<th scope="col">#</th>
+					<th scope="col"></th>
 				</tr>
 			</thead>
 			<tbody id="tb"></tbody>
