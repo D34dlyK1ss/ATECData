@@ -9,7 +9,7 @@
 			"color": "Silver",
 			"photo": "https://cdn-reichelt.de/bilder/web/xxl_ws/E200/MSI_7C56-002R_01.png",
 			"stock": "10",
-			"details":"https://www.msi.com/Motherboard/B550-A-PRO",
+			"details": "https://www.msi.com/Motherboard/B550-A-PRO",
 			"id": 0
 		},
 		{
@@ -30,7 +30,7 @@
 			"category": "Processors",
 			"manufacturer": "AMD",
 			"model": "Ryzen 5 5600X 3.7 GHz AM4",
-			"color": "null",
+			"color": "None",
 			"photo": "https://gfx.senetic.com/i/gallery/86261907_0482917425.jpg",
 			"stock": "13",
 			"details": "https://www.amd.com/pt/products/cpu/amd-ryzen-5-5600x",
@@ -76,7 +76,7 @@
 			"serial": "F4-3600C18D-16GTZRX",
 			"price": "65",
 			"category": "Memory",
-			"manufacturer": "G.SKILL",
+			"manufacturer": "G.Skill",
 			"model": "Trident Z RGB 16GB (2 x 8GB) DDR4",
 			"color": "Black",
 			"photo": "https://www.gskill.com/_upload/images/153671901010.png",
