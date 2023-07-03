@@ -1,4 +1,5 @@
 let arrayOfProducts = [];
+let cart = [];
 let getProducts = function (filter) {
 	let xhttp = new XMLHttpRequest();
 
@@ -17,48 +18,46 @@ let getProducts = function (filter) {
 };
 
 let buildCard = function (_product) {
-	let card = ''
-
-	card += `<div class="col hp">`
-	card += `	<div class="card h-100 shadow-sm">`
-	card += `		<div class="clearfix">`
-	card += `			<span class="float-start badge rounded-pill text-black bg-warning">`
-	card += `				${_product.category}`
-	card += `			</span>`
-	card += `			<span class="float-end badge rounded-pill text-black bg-warning bg-warning">`
-	card += `				${_product.manufacturer}`
-	card += `			</span>`
-	card += `		</div>`
-	card += `		<img src="${_product.photo}" class="card-img-top" alt="product.title"`
-	card += `			style="width: 100%; height: 200px; object-position: center">`
-	card += `		<div class="card-body">`
-	card += `			<h5 class="card-title">`
-	card += `				${_product.model}`
-	card += `			</h5>`
-	card += `			<div class="clearfix mb-2">`
-	card += `				<span class="float-start" style="font-size: 10px">`
-	card += `					${_product.serial}`
-	card += `				</span>`
-	card += `				<span class="float-end badge rounded-pill text-black bg-warning bg-success">`
-	card += `					PRICE: ${_product.price} €`
-	card += `				</span>`
-	card += `			</div>`
-	card += `			<div class="clearfix mb-1">`
-	card += `				<span class="float-start">`
-	card += `					Stock: ${_product.stock}`
-	card += `				</span>`
-	card += `				<span class="float-end">`
-	card += `					<a target="blank" href="${_product.details}" class="small text-muted text-uppercase aff-link">Details</a>`
-	card += `				</span>`
-	card += `			</div>`
-	card += `			<div class="d-grid gap-2 my-4">`
-	card += `				<a class="btn btn-warning bold-btn">`
-	card += `					<i class="fas fa-shopping-cart me-2"></i> add to cart`
-	card += `				</a>`
-	card += `			</div>`
-	card += `		</div>`
-	card += `	</div>`
-	card += `</div>`
+	let card = `<div class="col hp">
+				<div class="card h-100 shadow-sm">
+					<div class="clearfix">
+						<span class="float-start badge rounded-pill text-black bg-warning">
+							${_product.category}
+						</span>
+						<span class="float-end badge rounded-pill text-black bg-warning bg-warning">
+							${_product.manufacturer}
+						</span>
+					</div>
+					<img src="${_product.photo}" class="card-img-top" alt="product.title"
+						style="width: 100%; height: 200px; object-position: center">
+					<div class="card-body">
+						<h5 class="card-title">
+							${_product.model}
+						</h5>
+						<div class="clearfix mb-2">
+							<span class="float-start" style="font-size: 10px">
+								${_product.serial}
+							</span>
+							<span class="float-end badge rounded-pill text-black bg-warning bg-success">
+								PRICE: ${_product.price} €
+							</span>
+						</div>
+						<div class="clearfix mb-1">
+							<span class="float-start">
+								Stock: ${_product.stock}
+							</span>
+							<span class="float-end">
+								<a target="blank" href="${_product.details}" class="small text-muted text-uppercase aff-link">Details</a>
+							</span>
+						</div>
+						<div class="d-grid gap-2 my-4">
+							<button class="btn btn-warning bold-btn" onclick="addCartItem(${_product.id}, '${_product.model}', '${_product.photo}', '${_product.price}', '${_product.stock}')">
+								<i class="fas fa-shopping-cart me-2"></i> Add to cart
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>`;
 
 	return card;
 }
@@ -88,6 +87,80 @@ let buildProductRows = function (products) {
 
 	document.getElementById('product_rows').innerHTML = rows;
 };
+
+let addCartItem = function (id, model, photo, price, stock) {
+	let found = false;
+
+	for (let item of cart) {
+		if (item.id === id) {
+			found = true;
+
+			if (item.quantity < item.stock) {
+				item.quantity++;
+				item.price += price;
+			}
+		}
+	}
+
+	if (found === false) {
+		cart.push({
+			id: id,
+			quantity: 1,
+			model: model,
+			photo: photo,
+			price: price,
+			stock: stock
+		});
+	}
+	
+	buildCartItems();
+};
+
+let buildCartItems = function () {
+	let items = '';
+
+	for (let item of cart) {
+		items += buildCartItem(item);
+	}
+
+	document.getElementById('cart_items').innerHTML = items;
+};
+
+let buildCartItem = function (i) {
+	item = `<li class="list-group-item d-flex justify-content-between align-items-center" id="${i.id}">
+				<span>
+					<img src="${i.photo}" style="width: 50px; height: auto; margin-right: 10px;">${i.model} - Qnt: ${i.quantity}
+				</span>
+				<div class="btn-group">
+					<button class="btn btn-warning btn-sm" onclick="decrementItem(${i.id})">-</button>
+					<button class="btn btn-warning btn-sm" onclick="incrementItem(${i.id})">+</button>
+				</div>
+			</li>`;
+
+	return item;
+}
+
+let decrementItem = function (id) {
+	let i = cart.findIndex((item => item.id === id));
+
+	if(cart[i].quantity === 1) {
+		cart.splice(i, 1);
+	}
+	else {
+		cart[i].quantity--;
+	}
+
+	buildCartItems();
+}
+
+let incrementItem = function (id) {
+	let i = cart.findIndex((item => item.id === id));
+
+	if(cart[i].quantity < cart[i].stock) {
+		cart[i].quantity++;
+		buildCartItems();
+	}
+}
 
 document.addEventListener('DOMContentLoaded', () => {
 	getProducts();
