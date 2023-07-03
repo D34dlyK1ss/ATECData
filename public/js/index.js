@@ -68,7 +68,7 @@ let buildCard = function (_product) {
 let buildRow = function (_cards) {
 	let row = '';
 
-	row += `<div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3 mt-2">`;
+	row += `<div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3 mb-3 mt-2">`;
 
 	for (let c of _cards) {
 		row += c;
