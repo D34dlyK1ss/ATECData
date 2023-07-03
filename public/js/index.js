@@ -8,8 +8,6 @@ let getProducts = function (filter) {
 
 			if (filter !== 'All Products' && filter !== undefined) arrayOfProducts = arrayOfProducts.filter(p => p.category === filter);
 
-			console.log(filter);
-
 			buildProductRows(arrayOfProducts);
 		}
 	};
@@ -65,13 +63,13 @@ let buildCard = function (_product) {
 	return card;
 }
 
-let buildRow = function (_cards) {
+let buildRow = function (_prods) {
 	let row = '';
 
 	row += `<div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3 mb-3 mt-2">`;
 
-	for (let c of _cards) {
-		row += c;
+	for (let prod of _prods) {
+		row += buildCard(prod);
 	}
 
 	row += `</div>`;
@@ -79,34 +77,18 @@ let buildRow = function (_cards) {
 	return row;
 }
 
-let buildAllCards = function (_prods) {
-	let allCards = [];
+let buildProductRows = function (products) {
+	let rows = '';
 
-	for (let product of _prods) {
-		allCards.push(buildCard(product));
+	while (products.length > 0) {
+		let productsInRow = products.splice(0, 4);
+
+		rows += buildRow(productsInRow);
 	}
 
-	return allCards;
-}
-
-let buildProductRows = function (prods) {
-	let rows = "";
-	let cards = buildAllCards(prods);
-	let rowCount = Math.ceil(cards.length / 4);
-	let cardIndex = 0;
-	let numberOfCards = 4;
-
-	for (let i = 0; i < rowCount; i++) {
-		let cardsInRow = cards.slice(cardIndex, numberOfCards);
-
-		rows += buildRow(cardsInRow);
-		cardIndex += 4;
-		numberOfCards += 4;
-	}
-
-	document.getElementById("product_rows").innerHTML = rows;
+	document.getElementById('product_rows').innerHTML = rows;
 };
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
 	getProducts();
 });
