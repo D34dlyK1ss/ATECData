@@ -13,6 +13,7 @@ let getComponents = function () {
 	xhttp.send();
 };
 
+//verifing if its an url or not
 let insertComponent = function (component) {
 	const isValidUrl = urlString => {
 		let urlPattern = new RegExp('^(https?:\\/\\/)?' +
@@ -63,6 +64,7 @@ let insertComponent = function (component) {
 	getComponents();
 };
 
+//delete components in db
 let deleteComponent = function (id) {
 	let xhttp = new XMLHttpRequest();
 
@@ -74,18 +76,19 @@ let deleteComponent = function (id) {
 	getComponents();
 };
 
+// for organizing purposes this deleteRow exists
 let deleteRow = function (id) {
 	let row = document.getElementById(`component-id-${id}`);
 
 	row.remove();
 };
-
+//adds a new row when you create a row in the admin.html this is for performance purposes, so we don't get the components from the db to add to the rows everytime we add a new component
 let buildNewRow = function (component) {
 	let rows = document.getElementsByTagName("tbody")[0].innerHTML ?? "";
 	let newRow = "";
 
 	rows += `<tr data-p-id="component-id-${component.id}" id="component-id-${component.id}">`;
-	rows += `<td><button type="button" class="btn btn-primary btn-sm" onclick="clickEditComponent(${component.id})"><i class="fa-solid fa-user-pen"></i></button></td>`;
+	rows += `<td><button type="button" class="btn btn-secondary btn-sm" onclick="clickEditComponent(${component.id})"><i class="fa-solid fa-pen-to-square"></i></button></td>`;
 	rows += `<td>${component.serial}</td>`;
 	rows += `<td>${component.price}€</td>`;
 	rows += `<td>${component.category}</td>`;
@@ -94,19 +97,20 @@ let buildNewRow = function (component) {
 	rows += `<td>${component.color}</td>`;
 	rows += `<td><img src="${component.photo}" style="height: 75px; width: 75px; object-fit: cover;"></td>`;
 	rows += `<td>${component.stock}</td>`;
-	rows += `<td><a href="${component.details}"><i class="fa-solid fa-circle-info"></i></a></td>`;
+	rows += `<td><a href="${component.details}"><button type="button" class="btn btn-info btn-sm"><i class="fa-solid fa-circle-info" style="color: white;"></i></button></a></td>`;
 	rows += `<td><button type="button" class="btn btn-danger btn-sm" onclick="clickDeleteComponent(${component.id})"><i class="fa-solid fa-trash"></i></button></td>`;
 	rows += "</tr>";
 
 	document.getElementsByTagName("tbody")[0].innerHTML = rows + newRow;
 };
 
+//creates rows based on what components are in the database
 let buildRows = function (comps) {
 	let rows = "";
 
 	for (let component of comps) {
 		rows += `<tr data-p-id="component-id-${component.id}" id="component-id-${component.id}">`;
-		rows += `<td><button type="button" class="btn btn-primary btn-sm" onclick="clickEditComponent(${component.id})"><i class="fa-solid fa-user-pen"></i></button></td>`;
+		rows += `<td><button type="button" class="btn btn-secondary btn-sm" onclick="clickEditComponent(${component.id})"><i class="fa-solid fa-pen-to-square"></i></button></td>`;
 		rows += `<td>${component.serial}</td>`;
 		rows += `<td>${component.price}€</td>`;
 		rows += `<td>${component.category}</td>`;
@@ -115,7 +119,7 @@ let buildRows = function (comps) {
 		rows += `<td>${component.color}</td>`;
 		rows += `<td><img src="${component.photo}" style="height: 75px; width: 75px; object-fit: cover;"></td>`;
 		rows += `<td>${component.stock}</td>`;
-		rows += `<td><a href="${component.details}"><i class="fa-solid fa-circle-info"></i></a></td>`;
+		rows += `<td><a href="${component.details}"><button type="button" class="btn btn-info btn-sm"><i class="fa-solid fa-circle-info" style="color: white;"></i></button></a></td>`;
 		rows += `<td><button type="button" class="btn btn-danger btn-sm" onclick="clickDeleteComponent(${component.id})"><i class="fa-solid fa-trash"></i></button></td>`;
 		rows += "</tr>";
 	}
@@ -123,12 +127,13 @@ let buildRows = function (comps) {
 	document.getElementsByTagName("tbody")[0].innerHTML = rows;
 };
 
+//to edit components
 let clickEditComponent = function (id) {
 	let component = arrayOfComponents.find((i) => i.id === id);
 	let editRow = "";
 
-	editRow += `<td><button type="button" class="btn btn-success btn-sm" onclick="clickUpdateComponent(${component.id})">U</button></td>`;
-	editRow += `<td><input type="text" placeholder="Serial" style="text-transform:uppercase" class="form-control" id="tblInputSerial-${component.id}" value="${component.serial}"></td>`;
+	editRow += `<td><button type="button" class="btn btn-success btn-sm" onclick="clickUpdateComponent(${component.id})"><i class="fa-solid fa-square-check"></i></button></td>`;
+	editRow += `<td><input type="text" placeholder="Serial" oninput="this.value = this.value.toUpperCase()" class="form-control" id="tblInputSerial-${component.id}" value="${component.serial}"></td>`;
 	editRow += `<td><input type="number" placeholder="Number" step="0.01" min="0" class="form-control" id="tblInputPrice-${component.id}" value="${component.price}"></td>`;
 	editRow += `<td><select id="tblInputCategory-${component.id}" class="form-control">
 						<option value="Cases">Cases</option>
@@ -160,6 +165,7 @@ let clickEditComponent = function (id) {
 						<option value="KIOXIA">KIOXIA</option>
 						<option value="Lian Li">Lian Li</option>
 						<option value="Noctua">Noctua</option>
+						<option value="NOX">NOX</option>
 						<option value="MSI">MSI</option>
 						<option value="NVIDIA">NVIDIA</option>
 						<option value="NZXT">NZXT</option>
@@ -192,7 +198,7 @@ let clickEditComponent = function (id) {
 	editRow += `<td><input type="url" placeholder="URL" class="form-control" id="tblInputPhoto-${component.id}" value="${component.photo}"></td>`;
 	editRow += `<td><input type="number" placeholder="Number" step="1" min="0" class="form-control" id="tblInputStock-${component.id}" value="${component.stock}"></td>`;
 	editRow += `<td><input type="url" placeholder="URL" class="form-control" id="tblInputDetails-${component.id}" value="${component.details}"></td>`;
-	editRow += `<td><button type="button" class="btn btn-warning btn-sm" onclick="clickCancelEdit(${component.id})">X</button></td>`;
+	editRow += `<td><button type="button" class="btn btn-warning btn-sm" onclick="clickCancelEdit(${component.id})"><i class="fa-solid fa-xmark" style="color: white;"></i></button></td>`;
 
 	document.querySelector(`[data-p-id=component-id-${component.id}]`).innerHTML = editRow;
 
@@ -201,11 +207,12 @@ let clickEditComponent = function (id) {
 	document.getElementById(`tblInputColor-${component.id}`).value = component.color;
 };
 
+//canceling changes to components when editing
 let clickCancelEdit = function (id) {
 	let component = arrayOfComponents.find((i) => i.id === id);
 	let editRow = "";
 
-	editRow += `<td><button type="button" class="btn btn-primary btn-sm" onclick="clickEditComponent(${component.id})">E</button></td>`;
+	editRow += `<td><button type="button" class="btn btn-secondary btn-sm" onclick="clickEditComponent(${component.id})"><i class="fa-solid fa-pen-to-square"></i></button></td>`;
 	editRow += `<td>${component.serial}</td>`;
 	editRow += `<td>${component.price}€</td>`;
 	editRow += `<td>${component.category}</td>`;
@@ -214,13 +221,13 @@ let clickCancelEdit = function (id) {
 	editRow += `<td>${component.color}</td>`;
 	editRow += `<td><img src="${component.photo}" style="height: 75px; width: 75px; object-fit: cover;"></td>`;
 	editRow += `<td>${component.stock}</td>`;
-	editRow += `<td><a href="${component.details}">Details</a></td>`;
-	editRow += `<td><button type="button" class="btn btn-danger btn-sm" onclick="clickDeleteComponent(${component.id})">X</button></td>`;
+	editRow += `<td><a href="${component.details}"><button type="button" class="btn btn-info btn-sm"><i class="fa-solid fa-circle-info" style="color: white;"></i></button></a></td>`;
+	editRow += `<td><button type="button" class="btn btn-danger btn-sm" onclick="clickDeleteComponent(${component.id})"><i class="fa-solid fa-trash"></i></button></td>`;
 
 	document.querySelector(`[data-p-id=component-id-${component.id}]`).innerHTML =
 		editRow;
 };
-
+//to accept changes made to a component
 let clickUpdateComponent = function (id) {
 	let component = arrayOfComponents.find((i) => i.id === id);
 
@@ -243,10 +250,12 @@ let clickUpdateComponent = function (id) {
 	clickCancelEdit(id);
 };
 
+// delet components
 let clickDeleteComponent = function (id) {
 	deleteComponent(id);
 };
 
+//add components
 let clickAddComponent = function () {
 	let serial = document.getElementById("inputSerial").value;
 	let price = document.getElementById("inputPrice").value;
@@ -281,6 +290,7 @@ let clickAddComponent = function () {
 	document.getElementById("inputDetails").value = "";
 };
 
+//this ensures that when the website is completly loaded and is ready to be manipulated and interacted with, the event lister will execute the 'getComponents' function.
 document.addEventListener("DOMContentLoaded", () => {
 	getComponents();
 });

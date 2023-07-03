@@ -2,116 +2,121 @@
 <html lang="en">
 
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="css/index.css">
-	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-		integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-		crossorigin="anonymous" referrerpolicy="no-referrer">
-
+	<!--head links -->
+	<script src="./js/head.js"></script>
+	<!-- local css -->
+	<link rel="stylesheet" href="css/index.css">	
 	<title>ATECDATA - Home</title>
 </head>
 
 <header>
+		<!-- navbar logo -->
 	<nav class="navbar navbar-expand-lg bg-body-terciary bg-dark" data-bs-theme="dark" id="navbar">
 		<div class="container-fluid">
-			<a class="navbar-brand" href="index.html">
-				<img src="images/logo.jpg" alt="ATECDATA" height="70">
-			</a>
-			<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarNav"
-				aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="offcanvas offcanvas-end" data-bs-backdrop="static" tabindex="-1" id="navbarNav">
-				<div class="offcanvas-header">
-					<h1>Links</h1>
-					<button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
-				</div>
-				<div class="container-fluid">
-					<ul class="navbar-nav">
-						<li class="nav-item">
-							<a class="nav-link" aria-current="page" href="index.html">
-								<i class="fa-solid fa-house"></i>
-								<span class="navLink">
-									 Home
-								</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="contacts.html">
-								<i class="fa-solid fa-phone"></i>
-								<span class="navLink">
-									 Contact Us
-								</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="about.html">
-								<i class="fa-sharp fa-solid fa-users"></i>
-								<span class="navLink">
-									 About Us
-								</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#cartModal">
-								<i class="fas fa-cart-shopping"></i>
-								<span class="navLink">
-									Shopping Cart
-								</span>
-							</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="admin.html">
-								<i class="fa-solid fa-screwdriver-wrench"></i>
-								<span class="navLink">
-									 Admin
-								</span>
-							</a>
-						</li>
-					</ul>
-				</div>
-				<div class="container-fluid">
-					<ul class="navbar-nav">
-						<h1>Components</h1>
-						<li class="nav-item">
-							<a class="nav-link active" href="#" onclick="getProducts('All Products')">All Products</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#" onclick="getProducts('Processors')">Processors</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#" onclick="getProducts('Graphics Cards')">Graphics Cards</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#" onclick="getProducts('Motherboards')">Motherboards</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#" onclick="getProducts('Memory')">Memory</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#" onclick="getProducts('Coolers')">Coolers</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#" onclick="getProducts('Power Supplies')">Power Supplies</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#" onclick="getProducts('Storage')">Storage</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="#" onclick="getProducts('Cases')">Cases</a>
-						</li>
-					</ul>
-				</div>
+		<a class="navbar-brand" href="index.html">
+			<img src="images/logo.jpg" alt="ATECDATA" height="70">
+		</a>
+		<!-- navbar burger -->
+		<button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#navbarNav"
+			aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+		<!-- navbar header -->
+		<div class="offcanvas offcanvas-end" data-bs-backdrop="static" tabindex="-1" id="navbarNav">
+			<div class="offcanvas-header">
+				<h1>Links</h1>
+				<button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+			</div>
+		<!--navbar items-->
+			<div class="container-fluid">
+				<ul class="navbar-nav">
+					<li class="nav-item">
+						<a class="nav-link" aria-current="page" href="index.html">
+							<i class="fa-solid fa-house"></i>
+							<span class="navLink">
+								 Home
+							</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="contacts.html">
+							<i class="fa-solid fa-phone"></i>
+							<span class="navLink">
+								 Contact Us
+							</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="about.html">
+							<i class="fa-sharp fa-solid fa-users"></i>
+							<span class="navLink">
+								 About Us
+							</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#cartModal">
+							<i class="fas fa-cart-shopping"></i>
+							<span class="navLink">
+								Shopping Cart
+							</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="admin.html">
+							<i class="fa-solid fa-screwdriver-wrench"></i>
+							<span class="navLink">
+								 Admin
+							</span>
+						</a>
+					</li>
+				</ul>
+			</div>
+			<!-- navbar components -->
+
+			<div class="container-fluid">
+				<ul class="navbar-nav">
+					<h1>Components</h1>
+					<li class="nav-item">
+						<a class="nav-link active" href="#" onclick="getProducts('All Products')">All Products</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#" onclick="getProducts('Processors')">Processors</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#" onclick="getProducts('Graphics Cards')">Graphics Cards</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#" onclick="getProducts('Motherboards')">Motherboards</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#" onclick="getProducts('Memory')">Memory</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#" onclick="getProducts('Coolers')">Coolers</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#" onclick="getProducts('Power Supplies')">Power Supplies</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#" onclick="getProducts('Storage')">Storage</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="#" onclick="getProducts('Cases')">Cases</a>
+					</li>
+				</ul>
 			</div>
 		</div>
-	</nav>
+	</div>
+	</nav>	
 </header>
 
 <body>
+
+	
+
+
+	<!-- carousel beginning -->
 	<div class="container">
 		<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
 			<div class="carousel-indicators">
@@ -122,6 +127,7 @@
 				<button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
 					aria-label="Slide 3"></button>
 			</div>
+			<!-- carousel items -->
 			<div class="carousel-inner">
 				<div class="carousel-item active">
 					<img src="https://storage-asset.msi.com/event/mb/2017/4k_video/images/b_11.jpg"
@@ -139,6 +145,7 @@
 						alt="carousel3" />
 				</div>
 			</div>
+			<!-- carousel controls -->
 			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
 				data-bs-slide="prev">
 				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -151,33 +158,34 @@
 			</button>
 		</div>
 	</div>
+	<!-- carousel end -->
 
 	<div id="product_rows" class="container" style="position: relative">All Products</div>
-	
+
 	<div class="modal fade" id="cartModal" tabindex="-1" aria-labelledby="cartModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="cartModalLabel">Shopping Cart</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <ul id="cartItems" class="list-group">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="cartModalLabel">Shopping Cart</h5>
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+					<ul id="cartItems" class="list-group">
 						<!-- Items will be added here -->
-                    </ul>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="checkout()">Checkout</button>
-                </div>
-            </div>
-        </div>
-    </div>
+					</ul>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary" onclick="checkout()">Checkout</button>
+				</div>
+			</div>
+		</div>
+	</div>
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
-</script>
+	integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous">
+	</script>
 <script src="js/index.js"></script>
 
 </html>

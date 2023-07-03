@@ -1,13 +1,12 @@
 let arrayOfProducts = [];
 let getProducts = function (filter) {
 	let xhttp = new XMLHttpRequest();
-
+		//creates a new object that allows to make http requests to the server
 	xhttp.onreadystatechange = function () {
 		if (this.readyState === 4 && this.status === 200) {
+			//if the request has been completed AND the response status is OK
 			arrayOfProducts = JSON.parse(xhttp.responseText);
-
 			if (filter !== 'All Products' && filter !== undefined) arrayOfProducts = arrayOfProducts.filter(p => p.category === filter);
-
 			buildProductRows(arrayOfProducts);
 		}
 	};
@@ -16,6 +15,7 @@ let getProducts = function (filter) {
 	xhttp.send();
 };
 
+//cards builder to send to index.html
 let buildCard = function (_product) {
 	let card = ''
 
@@ -63,6 +63,7 @@ let buildCard = function (_product) {
 	return card;
 }
 
+//this will create a new row of products
 let buildRow = function (_prods) {
 	let row = '';
 
@@ -77,6 +78,7 @@ let buildRow = function (_prods) {
 	return row;
 }
 
+//when 4 products are added to the index.html this ensures that the next products will be added below the first 4 and so on...
 let buildProductRows = function (products) {
 	let rows = '';
 
@@ -89,6 +91,7 @@ let buildProductRows = function (products) {
 	document.getElementById('product_rows').innerHTML = rows;
 };
 
+//this ensures that when the website is completly loaded and is ready to be manipulated and interacted with, the event lister will execute the 'getComponents' function.
 document.addEventListener('DOMContentLoaded', () => {
 	getProducts();
 });
