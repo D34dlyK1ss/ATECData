@@ -51,7 +51,7 @@ let buildCard = function (_product) {
 							</span>
 						</div>
 						<div class="d-grid gap-2 my-4">
-							<button class="btn btn-warning bold-btn" onclick="addCartItem(${_product.id}, '${_product.model}', '${_product.photo}', '${_product.price}', '${_product.stock}')">
+							<button class="btn btn-warning bold-btn" onclick="addCartItem(${_product.id}, '${_product.model}', '${_product.photo}', ${_product.price}, '${_product.stock}')">
 								<i class="fas fa-shopping-cart me-2"></i> Add to cart
 							</button>
 						</div>
@@ -116,7 +116,18 @@ let addCartItem = function (id, model, photo, price, stock) {
 	}
 	
 	buildCartItems();
+	getPrice();
 };
+
+let getPrice = function () {
+	let cartPrice = 0;
+
+	for (let item of cart) {
+		cartPrice += item.price;
+	}
+
+	document.getElementById('cart_Price').innerHTML = `Price: ${cartPrice} €`
+}
 
 let buildCartItems = function () {
 	let items = '';
@@ -131,7 +142,7 @@ let buildCartItems = function () {
 let buildCartItem = function (i) {
 	item = `<li class="list-group-item d-flex justify-content-between align-items-center" id="${i.id}">
 				<span>
-					<img src="${i.photo}" style="width: 50px; height: auto; margin-right: 10px;">${i.model} - Qnt: ${i.quantity}
+					<img src="${i.photo}" style="width: 50px; height: auto; margin-right: 10px;">${i.model} - Qnt: ${i.quantity} - Price: ${i.price} €
 				</span>
 				<div class="btn-group">
 					<button class="btn btn-warning btn-sm" onclick="decrementItem(${i.id})">-</button>
@@ -149,19 +160,24 @@ let decrementItem = function (id) {
 		cart.splice(i, 1);
 	}
 	else {
+		cart[i].price -= cart[i].price / cart[i].quantity;
 		cart[i].quantity--;
 	}
 
 	buildCartItems();
+	getPrice();
 }
 
 let incrementItem = function (id) {
 	let i = cart.findIndex((item => item.id === id));
 
 	if(cart[i].quantity < cart[i].stock) {
+		cart[i].price += cart[i].price / cart[i].quantity;
 		cart[i].quantity++;
 		buildCartItems();
 	}
+
+	getPrice();
 }
 
 //this ensures that when the website is completly loaded and is ready to be manipulated and interacted with, the event lister will execute the 'getComponents' function.
