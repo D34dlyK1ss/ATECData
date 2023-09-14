@@ -2,7 +2,7 @@ let arrayOfProducts = [];
 let cart = [];
 let getProducts = function (filter) {
 	let xhttp = new XMLHttpRequest();
-		//creates a new object that allows to make http requests to the server
+	//creates a new object that allows to make http requests to the server
 	xhttp.onreadystatechange = function () {
 		if (this.readyState === 4 && this.status === 200) {
 			//if the request has been completed AND the response status is OK
@@ -18,6 +18,7 @@ let getProducts = function (filter) {
 
 //cards builder to send to index.html
 let buildCard = function (_product) {
+	let isDisabled = _product.stock <= 0 ? 'disabled' : '';
 	let card = `<div class="col hp">
 				<div class="card h-100 shadow-sm">
 					<div class="clearfix">
@@ -51,7 +52,7 @@ let buildCard = function (_product) {
 							</span>
 						</div>
 						<div class="d-grid gap-2 my-4">
-							<button class="btn btn-warning bold-btn" onclick="addCartItem(${_product.id}, '${_product.model}', '${_product.photo}', ${_product.price}, '${_product.stock}')">
+							<button class="btn btn-warning bold-btn" onclick="addCartItem(${_product.id}, '${_product.model}', '${_product.photo}', ${_product.price}, '${_product.stock}')" ${isDisabled}>
 								<i class="fas fa-shopping-cart me-2"></i> Add to cart
 							</button>
 						</div>
@@ -114,9 +115,10 @@ let addCartItem = function (id, model, photo, price, stock) {
 			stock: stock
 		});
 	}
-	
+
 	buildCartItems();
 	getPrice();
+	document.getElementById("checkout").disabled = false;
 };
 
 let getPrice = function () {
@@ -156,7 +158,7 @@ let buildCartItem = function (i) {
 let decrementItem = function (id) {
 	let i = cart.findIndex((item => item.id === id));
 
-	if(cart[i].quantity === 1) {
+	if (cart[i].quantity === 1) {
 		cart.splice(i, 1);
 	}
 	else {
@@ -171,7 +173,7 @@ let decrementItem = function (id) {
 let incrementItem = function (id) {
 	let i = cart.findIndex((item => item.id === id));
 
-	if(cart[i].quantity < cart[i].stock) {
+	if (cart[i].quantity < cart[i].stock) {
 		cart[i].price += cart[i].price / cart[i].quantity;
 		cart[i].quantity++;
 		buildCartItems();
