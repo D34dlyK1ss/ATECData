@@ -1,9 +1,9 @@
-const fs = require("fs");
+import { readFileSync, writeFileSync } from "fs";
 
-exports.databaseRepo = function () {
+export function databaseRepo () {
   let dbName = "database.json";
   let readDb = function () {
-    let rawData = fs.readFileSync(dbName);
+    let rawData = readFileSync(dbName);
 
     return JSON.parse(rawData);
   };
@@ -25,7 +25,7 @@ exports.databaseRepo = function () {
       componentToUpdate.stock = component.stock;
       componentToUpdate.details = component.details;
 
-      fs.writeFileSync(dbName, JSON.stringify(dataJson, null, "\t"));
+      writeFileSync(dbName, JSON.stringify(dataJson, null, "\t"));
 
       return componentToUpdate;
     },
@@ -41,7 +41,7 @@ exports.databaseRepo = function () {
       component.id = nextId;
 
       dataJson.components.push(component);
-      fs.writeFileSync(dbName, JSON.stringify(dataJson, null, "\t"));
+      writeFileSync(dbName, JSON.stringify(dataJson, null, "\t"));
 
       return component;
     },
@@ -55,9 +55,9 @@ exports.databaseRepo = function () {
 
       dataJson.components = dataJson.components.filter((x) => x.id != id);
 
-      fs.writeFileSync(dbName, JSON.stringify(dataJson, null, "\t"));
+      writeFileSync(dbName, JSON.stringify(dataJson, null, "\t"));
 
       return true;
     },
   };
-};
+}

@@ -1,9 +1,10 @@
-const express = require("express");
-const cors = require("cors");
-const bodyParser = require("body-parser");
+import express from "express";
+import cors from "cors";
+import bodyParser from "body-parser";
+import * as db from "./db-repo.js";
 
 let app = express(); // Create an instance of the Express application
-let dbRepo = require("./db-repo").databaseRepo(); 
+let dbRepo = db.databaseRepo(); 
 const port = 3000; // Specifies the port on which the server will listen
 
 app.use(cors()); // Enable Cross-Origin Resource Sharing (CORS)
